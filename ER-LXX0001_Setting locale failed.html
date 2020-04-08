@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type"><title></title></head><body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<p>ER-LXX0001 2019-01-11</p>
+
+<h1>Error Message</h1>
+
+<h2>Key Word</h2>
+
+<p>Linux , Language ,locale<br>
+</p>
+
+<h2>error message show:</h2>
+
+<p>perl: warning: Setting locale failed.<br>
+perl: warning: Please check that your locale settings:<br>
+&nbsp;LANGUAGE = (unset),<br>
+&nbsp;LC_ALL = (unset),<br>
+&nbsp;LC_CTYPE = "UTF-8",<br>
+&nbsp;LANG = "en_US.UTF-8"<br>
+&nbsp;&nbsp;&nbsp; are supported and installed on your system.<br>
+perl: warning: Falling back to the standard locale ("C").</p>
+
+<h2>Countermeasures</h2>
+
+<p>for Rockchip git server<br>
+</p>
+<p>Install language&nbsp; ,Then select need language</p>
+
+
+<p></p>
+
+
+<p style="background-color: silver;">sudo apt-get install localepurge</p>
+<p style="background-color: silver;">sudo dpkg-reconfigure localepurge <br>
+</p>
+<p> by this select zh_CN.UTF-8 and zh_TZ.UTF-8 </p>
+<br>
+setting LC_ALL<br>
+<p style="color: rgb(153, 153, 153); background-color: silver;"><span style="color: black;">export LC_ALL=zh_CN.UTF-8</span><br style="color: black;">
+</p>
+<br>
+show now setting<br>
+<p style="background-color: silver;">locale</p>
+
+</body></html>
