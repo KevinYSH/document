@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>How to Setting Power Saving</title>
+  </head>
+  <body>
+    <p>No:HL-RW0001 2017-12-26</p>
+    <h1><b>How to Setting Power Saving</b></h1>
+    <h2>Key Word:</h2>
+    <p>Realtek WiFi ; Power Saving ; CONFIG_POWER_SAVING</p>
+    <h2>Directions</h2>
+    <p>1. Need to modify the <span style="color: rgb(51, 204, 0);">CONFIG_POWER_SAVING</span>
+      <span style="color: rgb(51, 204, 0);">= y</span> in Makefile</p>
+    <p>2. pre-build the driver</p>
+    <p style="background-color: rgb(153, 153, 153);">make</p>
+    <p>3.Power on will into power saving mode</p>
+    <h2>on/off power saving</h2>
+    <h4>To setting LPS dynamically</h4>
+    <p>use </p>
+    <p style="background-color: rgb(153, 153, 153);">iwpriv wlan0 pm_set lps=0</p>
+    <p>lps=0 is off</p>
+    <p>lps=1 is on</p>
+    <p><br>
+    </p>
+    <h3>To setting IPS dynamically</h3>
+    <p>use </p>
+    <p style="background-color: rgb(153, 153, 153);">iwpriv wlan0 pm_set ips=0</p>
+    <p>ips=0 is off</p>
+    <p>ips=1 is IPS-NORMAL</p>
+    <p>ips=2 is IPS-LEVEL_2<br>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head>
+
+
+
+  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>How to Setting Power Saving</title></head><body style="height: 520px; color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+    <p>No:DE-LDRUS001 2019-12-13</p>
+    <h1><b>How to build Realtek USB HUB Test_Command&nbsp;</b></h1>
+<h2>Key Word:</h2>
+
+
+    
+    <p>Linux ; Realtek USB HUB ; RTS5441 ; testmode ; rts_hub_u3testmode
+</p>
+    
+<h2>Description</h2>
+To test the USB waveform, you must use the test program provided by Realtek for testing in the system.<br>
+Realtek will provide source code to compile.<br>
+<br>
+<h2>Directions</h2>
+<h4>
+1. To modefy Makefile CROSS_COMPILE to system toolchain
+    
+</h4>
+<p style="background-color: rgb(153, 153, 153);">CROSS_COMPILE ?= &lt;toolchain path&gt;<br>
+</p>
+Then <br>
+<p style="background-color: rgb(153, 153, 153);">make</p>
+Two files will be generated after completion<br>
+testmode and rts_hub_u3testmode<br>
+<br>
+<h4>
+2. Cpoy two files to system and testing</h4>
+<h4>3. Check USB HUB is mount</h4>
+
+<p style="background-color: rgb(153, 153, 153);">lsusb<br>
+</p>
+will be show<br>
+Bus 004 Device 002: ID 0bda:5411&nbsp; &lt;-- USB 2.0<br>
+Bus 005 Device 002: ID 0bda:0411&nbsp; &lt;-- USB 3.0<br>
+<br>
+<h4>
+4. Test USB 2.0</h4>
+
+[command]<br>
+./testmode -D &lt;VID:PID&gt; -p &lt;port&gt; -t &lt;testmode&gt;<br>
+<br>
+&lt;VID:PID&gt; 0bda:5411<br>
+&lt;port&gt; 1~4<br>
+&lt;testmode&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp; test_packet<br>&nbsp;&nbsp;&nbsp;&nbsp; test_se0_nak<br>&nbsp;&nbsp;&nbsp;&nbsp;
+test_k <br>&nbsp;&nbsp;&nbsp;&nbsp;
+test_j<br>&nbsp;&nbsp;&nbsp;&nbsp;
+test_force_hs <br>&nbsp;&nbsp;&nbsp;&nbsp;
+test_force_fs<br>
+<br>
+example:<br>
+<p style="background-color: rgb(153, 153, 153);">./testmode -D 0bda:5411 -p 1 -t test_packet<br>
+./testmode -D 0bda:5411 -p 2 -t test_packet<br>
+./testmode -D 0bda:5411 -p 3 -t test_packet<br>
+./testmode -D 0bda:5411 -p 4 -t test_packet</p>
+<h4><br>
+
+</h4>
+<h4>5. Test USB 3.0</h4>
+
+[command]<br>
+./rts_hub_u3testmode -P &lt;PID&gt; -p &lt;port&gt;<br>
+&lt;PID&gt;&nbsp; 0411<br>
+&lt;port&gt;&nbsp; 1~4<br>
+<br>
+example:<br>
+<p style="background-color: rgb(153, 153, 153);">./rts_hub_u3testmode -P 0411 -p 1<br>
+./rts_hub_u3testmode -P 0411 -p 2<br>
+./rts_hub_u3testmode -P 0411 -p 3<br>
+./rts_hub_u3testmode -P 0411 -p 4<br>
+</p>
+<br>
+<br>
+</body></html>

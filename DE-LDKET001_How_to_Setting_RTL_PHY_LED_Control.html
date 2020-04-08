@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head>
+
+
+
+
+  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>How to Setting Power Saving</title></head><body style="height: 520px; color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+    <p>No:DE-LDKET001 2020-02-04</p>
+    <h1><b>How to Setting Realtek PHY LED Control&nbsp;</b></h1>
+<h2>Key Word:</h2>
+
+
+    
+    <p>Linux ; Realtek PHY ; RTL8812 ; LED ;<br>
+
+</p>
+    
+<h2>Description</h2>To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of stmmac_mdio.c .<br>
+The stmmac_mdio.c path is ./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+<h2>Directions</h2>
+<h4>1. Need to disable eee LED function and set LED configuration<br>
+
+</h4>
+<h4>2. To add config code for example use RTL8211E<br>
+</h4>
+a. define function<br>
+<p style="background-color: rgb(153, 153, 153);">// external PHY LED Control add.<br>
+static int phy_disable_eee_LED(struct phy_device *phydev);<br>
+static int phy_rtl8211e_led_fixup(struct phy_device *phydev);</p>
+b. add in stmmac_dvr_probe() function <br>
+<p style="background-color: rgb(153, 153, 153);">&nbsp;&nbsp;&nbsp; ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_disable_eee_LED);<br>
+&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn("Cannot register PHY board eee LED.\n");<br>
+&nbsp;&nbsp;&nbsp; ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_rtl8211e_led_fixup);<br>
+&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn("Cannot register PHY board fixup.\n");</p>
+c. add finction<br>
+<p style="background-color: rgb(153, 153, 153);">static int phy_rtl8211e_led_fixup(struct phy_device *phydev)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; pr_info("PHY setting RTL8211 LED function. \n");<br>
+<br>
+&nbsp;&nbsp;&nbsp; //switch to extension page44<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x07);<br>
+&nbsp;&nbsp;&nbsp; mdelay(10);<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 30, 0x2c);<br>
+&nbsp;&nbsp;&nbsp; //set led act<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 26, 0x0040);<br>
+&nbsp;&nbsp;&nbsp; //set led link<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 28, 0x0042);<br>
+&nbsp;&nbsp;&nbsp; //switch back to page0<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev,31,0x00);<br>
+<br>
+&nbsp;&nbsp;&nbsp; return 0;<br>
+}<br>
+static int phy_disable_eee_LED(struct phy_device *phydev)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; pr_info("PHY disable RTL8211E EEE LED function. \n");<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x5);<br>
+&nbsp;&nbsp;&nbsp; mdelay(10);<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 5, 0x8b82);<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 6, 0x052b);<br>
+&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x0);<br>
+&nbsp;&nbsp;&nbsp; return 0;<br>
+}</p>
+</body></html>

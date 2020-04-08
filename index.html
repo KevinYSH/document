@@ -1,66 +1,56 @@
-<!DOCTYPE html>
-<html><head>
-
-
-
-
-  
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>How to Setting Power Saving</title></head><body style="height: 520px; color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
-    <p>No:DE-LDKET001 2020-02-04</p>
-    <h1><b>How to Setting Realtek PHY LED Control&nbsp;</b></h1>
-<h2>Key Word:</h2>
-
-
-    
-    <p>Linux ; Realtek PHY ; RTL8812 ; LED ;<br>
-
-</p>
-    
-<h2>Description</h2>To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of stmmac_mdio.c .<br>
-The stmmac_mdio.c path is ./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-<h2>Directions</h2>
-<h4>1. Need to disable eee LED function and set LED configuration<br>
-
-</h4>
-<h4>2. To add config code for example use RTL8211E<br>
-</h4>
-a. define function<br>
-<p style="background-color: rgb(153, 153, 153);">// external PHY LED Control add.<br>
-static int phy_disable_eee_LED(struct phy_device *phydev);<br>
-static int phy_rtl8211e_led_fixup(struct phy_device *phydev);</p>
-b. add in stmmac_dvr_probe() function <br>
-<p style="background-color: rgb(153, 153, 153);">&nbsp;&nbsp;&nbsp; ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_disable_eee_LED);<br>
-&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn("Cannot register PHY board eee LED.\n");<br>
-&nbsp;&nbsp;&nbsp; ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_rtl8211e_led_fixup);<br>
-&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn("Cannot register PHY board fixup.\n");</p>
-c. add finction<br>
-<p style="background-color: rgb(153, 153, 153);">static int phy_rtl8211e_led_fixup(struct phy_device *phydev)<br>
-{<br>
-&nbsp;&nbsp;&nbsp; pr_info("PHY setting RTL8211 LED function. \n");<br>
-<br>
-&nbsp;&nbsp;&nbsp; //switch to extension page44<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x07);<br>
-&nbsp;&nbsp;&nbsp; mdelay(10);<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 30, 0x2c);<br>
-&nbsp;&nbsp;&nbsp; //set led act<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 26, 0x0040);<br>
-&nbsp;&nbsp;&nbsp; //set led link<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 28, 0x0042);<br>
-&nbsp;&nbsp;&nbsp; //switch back to page0<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev,31,0x00);<br>
-<br>
-&nbsp;&nbsp;&nbsp; return 0;<br>
-}<br>
-static int phy_disable_eee_LED(struct phy_device *phydev)<br>
-{<br>
-&nbsp;&nbsp;&nbsp; pr_info("PHY disable RTL8211E EEE LED function. \n");<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x5);<br>
-&nbsp;&nbsp;&nbsp; mdelay(10);<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 5, 0x8b82);<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 6, 0x052b);<br>
-&nbsp;&nbsp;&nbsp; phy_write(phydev, 31, 0x0);<br>
-&nbsp;&nbsp;&nbsp; return 0;<br>
-}</p>
-</body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<base target="_blank" /> 
+<head> 
+<title>contents</title> 
+<link href="backup/index.css" rel="stylesheet" type="text/css" /> 
+<style type=text/css> 
+</style></head> 
+<body><div> 
+<li><a href="[Linux][Realtek] How to mount Serial port to ttyUSB node.mht">[Linux][Realtek] How to mount Serial port to ttyUSB node.mht</a></li> 
+<li><a href="1_How to chang Permissions of File or Dir.txt">1_How to chang Permissions of File or Dir.txt</a></li> 
+<li><a href="1_How to mount node to dev.txt">1_How to mount node to dev.txt</a></li> 
+<li><a href="1_How to mount Serial port to ttyUSB node.txt">1_How to mount Serial port to ttyUSB node.txt</a></li> 
+<li><a href="Auto_mount_NEW_HDD.txt">Auto_mount_NEW_HDD.txt</a></li> 
+<li><a href="DE-LDKET001_How_to_Setting_RTL_PHY_LED_Control.html">DE-LDKET001_How_to_Setting_RTL_PHY_LED_Control.html</a></li> 
+<li><a href="DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK.html">DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK.html</a></li> 
+<li><a href="DE-LDRSW002_How_to_Use_RTL_Switch_RGMII.html">DE-LDRSW002_How_to_Use_RTL_Switch_RGMII.html</a></li> 
+<li><a href="DE-LDRSW003_How_to_Use_RTL_Switch_SGMII.html">DE-LDRSW003_How_to_Use_RTL_Switch_SGMII.html</a></li> 
+<li><a href="DE-LDRUS001_How_to_build_RTL_USB_HUB_test_command.html">DE-LDRUS001_How_to_build_RTL_USB_HUB_test_command.html</a></li> 
+<li><a href="DE-LDRUS001_How_to_build_RTL_USB_HUB_test_command.pdf">DE-LDRUS001_How_to_build_RTL_USB_HUB_test_command.pdf</a></li> 
+<li><a href="DisableWindows10.rar">DisableWindows10.rar</a></li> 
+<li><a href="ER_git_sync.txt">ER_git_sync.txt</a></li> 
+<li><a href="ER_Setting locale failed.txt">ER_Setting locale failed.txt</a></li> 
+<li><a href="ER-AKX0002_Try_increasing_heap_size_with_java_option_-Xmx.html">ER-AKX0002_Try_increasing_heap_size_with_java_option_-Xmx.html</a></li> 
+<li><a href="ER-LA0003_Communication_error_with_Jack_server_58.html">ER-LA0003_Communication_error_with_Jack_server_58.html</a></li> 
+<li><a href="ER-LDRWI001.html">ER-LDRWI001.html</a></li> 
+<li><a href="ER-LI0001_Unknown_symbol_in_module.txt">ER-LI0001_Unknown_symbol_in_module.txt</a></li> 
+<li><a href="ER-LKX0001 _linker command failed with exit code.html">ER-LKX0001 _linker command failed with exit code.html</a></li> 
+<li><a href="ER-LXX0001_Setting locale failed.html">ER-LXX0001_Setting locale failed.html</a></li> 
+<li><a href="ER-overload image.txt">ER-overload image.txt</a></li> 
+<li><a href="ER-RS0001_xterm.txt">ER-RS0001_xterm.txt</a></li> 
+<li><a href="ER-RS0002_usbutils-007_No_such_file.html">ER-RS0002_usbutils-007_No_such_file.html</a></li> 
+<li><a href="ER-RS0003_CROSS_compiler_fail.html">ER-RS0003_CROSS_compiler_fail.html</a></li> 
+<li><a href="HC-SW0001_How_to_RW_RTL_Switch_Register.html">HC-SW0001_How_to_RW_RTL_Switch_Register.html</a></li> 
+<li><a href="HL-AS0001_How_to_set_CPU_performance mode .html">HL-AS0001_How_to_set_CPU_performance mode .html</a></li> 
+<li><a href="HL-RS0001_How_to_mount_node_to_dev.html">HL-RS0001_How_to_mount_node_to_dev.html</a></li> 
+<li><a href="HL-RS0001_How_to_mount_node_to_dev.txt">HL-RS0001_How_to_mount_node_to_dev.txt</a></li> 
+<li><a href="HL-RS0003_How_to_read_write_switch_register.html">HL-RS0003_How_to_read_write_switch_register.html</a></li> 
+<li><a href="HL-RW0001_How_to_Setting_Power_Saving.html">HL-RW0001_How_to_Setting_Power_Saving.html</a></li> 
+<li><a href="HL-RW0001_How_to_Setting_Power_Saving.txt">HL-RW0001_How_to_Setting_Power_Saving.txt</a></li> 
+<li><a href="Howto Use Linux Watchdog.txt">Howto Use Linux Watchdog.txt</a></li> 
+<li><a href="QA-GAY0001_Realtek_PHY_Issue.html">QA-GAY0001_Realtek_PHY_Issue.html</a></li> 
+<li><a href="RTL8211E_PHYLED_set.txt">RTL8211E_PHYLED_set.txt</a></li> 
+<li><a href="ST_NewHDD.txt">ST_NewHDD.txt</a></li> 
+<li><a href="ST_static_IP.txt">ST_static_IP.txt</a></li> 
+<li><a href="ST_xrdp.txt">ST_xrdp.txt</a></li> 
+<li><a href="TO_ncftp.txt">TO_ncftp.txt</a></li> 
+<li><a href="TO_screen.txt">TO_screen.txt</a></li> 
+<li><a href="TO_vsftpd.txt">TO_vsftpd.txt</a></li> 
+<li><a href="WDT.c">WDT.c</a></li> 
+<li><a href="檔名定義.txt">檔名定義.txt</a></li> 
+<h4>RK_特殊分辨綠</h4> 
+</div> 
+</body> 
+</html> 

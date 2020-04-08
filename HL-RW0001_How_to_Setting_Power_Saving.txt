@@ -1,0 +1,28 @@
+No:LH-RW0001 2017-12-26
+
+How to Setting Power Saving
+
+Key Word:
+Realtek WiFi ; Power Saving ; CONFIG_POWER_SAVING
+
+Directions
+1. Need to modify the CONFIG_POWER_SAVING = y in Makefile
+2. pre-build the driver
+
+make
+
+3.Power on will into power saving mode
+
+on/off power saving
+
+To setting LPS dynamically, use
+iwpriv wlan0 pm_set lps=0
+lps=0 is off
+lps=1 is on
+
+
+To setting IPS dynamically, use
+iwpriv wlan0 pm_set ips=0
+ips=0 is off
+ips=1 is IPS-NORMAL
+ips=2 is IPS-LEVEL_2

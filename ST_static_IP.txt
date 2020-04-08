@@ -1,0 +1,39 @@
+Setting
+Item:Setting Static IP
+
+Description:
+
+#­×§ïÀÉ®×
+sudo vim /etc/network/interfaces
+
+#reset Networking service #Ubuntu 14.04 will be rebootsystem
+sudo /etc/init.d/networking restart
+
+for exsample
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+#iface eth0 inet dhcp 	#open DHCP cline
+
+iface eth0 inet static	#set static IP
+
+address 10.114.152.11
+netmask 255.255.252.0
+gateway 10.114.152.1
+
+dns-nameservers 10.114.28.248 10.114.132.201 10.114.132.202 202.96.134.133
+dns-search ap.corp.arrow.com
+
+#auto eth0:0
+#iface eth0:0 inet static
+#address 10.114.152.11
+#netmask 255.255.252.0
+#gateway 10.114.152.1
+
+#dns-nameservers 10.114.28.248 10.114.132.201 10.114.132.202 202.96.134.133
+#dns-search ap.corp.arrow.com
+
+#auto eth0:1
+#iface eth0:1 inet static

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+  
+    <meta http-equiv="content-type" content="text/html; charset=UTF8"><title>How to mount node to dev</title></head><body>
+    
+<p>No:DE-LDRSW002 2019-12-13</p>
+
+    <h1>How to Use RTL Switch RGMII interface<br>
+</h1>
+    <h2>Key Word:</h2>
+    <p> Switch API, MDC, MDIO, SMI, RGMII<br>
+</p>
+    <h2>Description<br>
+    </h2>
+    <p>1. To use the RGMII interface with Realtek LAN Switch, need to use the API code and
+      porting to the system SDK.<br><br>
+</p>
+    <h2>Directions</h2>
+    <h3></h3>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 0, 153);" lang="EN-US">rtk_switch_init</span><span style="color: rgb(0, 0, 153);" lang="ZH-CN">()</span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(152, 72, 6);" lang="EN-US"><span style="color: rgb(0, 0, 153);">;</span><o:p style="color: rgb(0, 0, 153);"> </o:p>
+<span style="color: black;">rtk_port_mac_ability_t mac_cfg ;</span>
+<span style="color: black;">rtk_mode_ext_t mode ;</span>
+<span style="color: black;">mode = MODE_EXT_RGMII ;</span>
+<span style="color: black;">mac_cfg.forcemode = MAC_FORCE ;</span>
+<span style="color: black;">mac_cfg.speed = </span></span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(152, 72, 6);" lang="EN-US"><span style="color: black;">PORT_</span></span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(152, 72, 6);" lang="EN-US"><span style="color: black;">SPD_1000M;</span>
+<span style="color: black;">mac_cfg.duplex = </span></span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(152, 72, 6);" lang="EN-US"><span style="color: black;">PORT_</span></span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(152, 72, 6);" lang="EN-US"><span style="color: black;">FULL_DUPLEX;</span>
+<span style="color: black;">mac_cfg.link = PORT_LINKUP;</span>
+<span style="color: black;">mac_cfg.nway = DISABLED;</span>
+<span style="color: black;">mac_cfg.txpause = ENABLED;</span>
+<span style="color: black;">mac_cfg.rxpause = ENABLED;</span>
+<span style="color: rgb(0, 0, 153);">rtk_port_macForceLinkExt_set(EXT_PORT0, mode,&amp;mac_cfg);</span>
+<span style="color: rgb(0, 0, 153);">rtk_port_macForceLinkExt_set(EXT_PORT1, mode,&amp;mac_cfg);</span>
+<span style="color: rgb(0, 0, 153);">rtk_port_rgmiiDelayExt_set(EXT_PORT0,1, 4);</span>
+<span style="color: rgb(0, 0, 153);">rtk_port_rgmiiDelayExt_set(EXT_PORT1,1, 4);</span></span><br>
+<span style="font-family: &quot;微軟正黑體&quot;,sans-serif; color: rgb(0, 0, 153);" lang="EN-US">rtk_port_phyEnableAll_set(ENABLED);</span><span style="font-family: &quot;Arial&quot;,sans-serif; color: rgb(50, 62, 79);" lang="EN-US"></span></pre>
+
+
+
+
+  </body></html>

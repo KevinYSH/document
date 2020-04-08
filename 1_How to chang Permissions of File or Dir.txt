@@ -1,0 +1,5 @@
+﻿                                                                      Linux chmod 只修改全部資料夾或全部檔案的權限
+只修改 /home/abc 底下所有資料夾的權限(不含檔案)
+find /home/abc -type d -exec chmod 755 {} \;
+只修改 /home/abc 底下所有檔案的權限(不含資料夾) 
+find /home/abc -type f -exec chmod 644 {} \;

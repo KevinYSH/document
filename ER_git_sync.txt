@@ -1,0 +1,9 @@
+sycn error
+
+
+保留.reop 資料夾
+刪除所有
+可以使用
+
+執行
+rm -rfv .repo/manifest*

@@ -1,0 +1,23 @@
+No:LH-RS0001 2017-12-26
+
+How to mount node to dev
+Key Word:
+mount,dev,node
+Directions:
+打包image 時，會把需要的nod 放到 squashfs-pf-list.txt
+在系統開機時自動載入
+
+使用時機
+在系統中沒有出現需要的 node
+檔案路徑
+./rtl819x/boards/rtl8881a/tools/mkimg
+vim ./rtl819x/boards/rtl8881a/tools/mkimg
+
+#加入ttyUSB device for serial port
+echo "/dev/ttyUSB0     c 666 root root   188  0" >> squashfs-pf-list.txt
+echo "/dev/ttyUSB1     c 666 root root   188  1" >> squashfs-pf-list.txt
+echo "/dev/ttyUSB2     c 666 root root   188  2" >> squashfs-pf-list.txt
+echo "/dev/ttyUSB3     c 666 root root   188  3" >> squashfs-pf-list.txt
+
+#加入watchdog deice for soft WDT
+echo "/dev/watchdog     c 666 root root   10  130" >> squashfs-pf-list.txt

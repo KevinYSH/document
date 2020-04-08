@@ -1,0 +1,12 @@
+# turn off EEE_LED
+echo 31 0x5 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 5 0x8b82 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 6 0x052b > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 31 0x0 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+
+# Set LED
+echo 31 0x0007 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 30 0x002c > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 26 0x0040 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 28 0x0042 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers
+echo 31 0x0 > /sys/bus/mdio_bus/devices/stmmac-0:03/phy_registers

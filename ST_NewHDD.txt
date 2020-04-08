@@ -1,0 +1,45 @@
+Setting
+Item:Setting boot auto mount new HDD
+
+*掛載前需要先做格式化動作
+
+Description:
+開機時自動掛載硬碟
+硬碟安裝後可再
+/dev
+裡面找到
+sda 第一個硬碟
+sdb 第二個硬碟
+....
+
+這只是一個鏡像檔，無法讀取其內部內容
+需要透過 mount 的方式到一個資料夾
+sudo mount -t sdb1 /Datafolder
+
+sudo blkid
+sudo vim /etc/fstab
+
+for ex
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+proc            /proc           proc    nodev,noexec,nosuid 0       0
+# / was on /dev/sda2 during installation
+UUID=91f45773-f822-460a-86cc-f666d1c29ea4 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/sda1 during installation
+UUID=EB30-2168  /boot/efi       vfat    defaults        0       1
+# swap was on /dev/sda3 during installation
+UUID=ad701415-3d03-467c-bc7f-f02b508a2b17 none            swap    sw              0       0
+
+# sdb 160G HDD
+UUID=b11ee6dd-d8b1-4ed8-8555-f102c1e0f08d /HDD160   ext4    defaults  0       0
+
+# sdc 500G HDD
+UUID=3199dce5-6c60-40b8-9eea-4e3478046378 /FTP_share    ext4    defaults 0       0
+
+# sdd 500G HDD
+UUID=42907ec0-ea32-4aa4-a4e3-1c68f0b7b073 /FTP_share/Soc_SDK/RK_SDK ext4   defaults 0       0

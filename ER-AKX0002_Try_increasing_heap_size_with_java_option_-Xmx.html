@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+</head><body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<p>No:ER-LA0002 2018-01-23 </p>
+
+<h1>Error Message</h1>
+
+<h2>Key Word<br>
+
+</h2>
+
+<p>Android 7.1 , JDK8 , ubuntu_14</p>
+
+<h2>error message show</h2>
+
+<p>Out of memory
+error (version 1.2-rc4 'Carnac' (298900
+f95d7bdecfceb327f9d201a1348397ed8a843843 by
+android-jack-team@google.com)).<br>
+Java heap space.<br>
+Try increasing heap size with java option '-Xmx&lt;size&gt;'.<br>
+Warning: This may have produced partial or corrupted output.<br>
+[ 88% 42748/48338] Building with Jack:
+out/target/common/obj/JAVA_LIBRARIES/core-tests_intermediates/classes.jack<br>
+ninja: build stopped: subcommand failed.<br>
+make: *** [ninja_wrapper] Error 1<size></size></p>
+
+<h2><strong>Countermeasures</strong></h2>
+
+<p>copy system gcc file to SDK Compiler Environment</p>
+
+<p style="background-color: silver;">export
+JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation
+-Xmx4g"<br>
+./prebuilts/sdk/tools/jack-admin kill-server<br>
+./prebuilts/sdk/tools/jack-admin start-server</p>
+
+<p>or</p>
+
+<p style="background-color: silver;">./prebuilts/sdk/tools/jack-admin
+stop-sercer<br>
+vim ./prebuilts/sdk/tools/jack-admin<br>
+</p>
+
+<p>to change <br>
+</p>
+
+<p style="background-color: silver;">JACK_SERVER_COMMAND="java
+-XX:MaxJavaStackTraceDepth=-1 -Djava.io.tmpdir=$TMPDIR
+$JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"<br>
+to<br>
+JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1
+-Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS <span style="color: rgb(0, 153, 0);">-Xmx4g</span> -cp $LAUNCHER_JAR
+$LAUNCHER_NAME"<br>
+</p>
+
+<p>Then pre-build</p>
+
+</body></html>
