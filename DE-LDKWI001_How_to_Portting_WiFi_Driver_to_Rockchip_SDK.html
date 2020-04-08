@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html><head>
+
+
+
+
+  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>How to Setting Power Saving</title></head><body style="color: rgb(0, 0, 0); background-color: white;" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+    
+<p>No:DE-LDKWI001 2020-02-04</p>
+
+    <h1><b>How to portting WiFi driver to Rockchip_SDK</b></h1>
+    <h2>Key Word:</h2>
+    
+<p>Rockchip ; Realtek WiFi ; driver<br>
+</p>
+
+    <h2>Error Massage</h2>
+<p>rtw_android.c error<br>
+</p>
+drivers/net/wireless/rockchip_wlan/rtl8822be/os_dep/linux/rtw_android.c: In function 'wifi_get_country_code':<br>
+drivers/net/wireless/rockchip_wlan/rtl8822be/os_dep/linux/rtw_android.c:1028:10:
+error: too few arguments to function
+'wifi_control_data-&gt;get_country_code'<br>
+&nbsp;&nbsp; return wifi_control_data-&gt;get_country_code(ccode);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br>
+<p>intf.c error</p>
+drivers/built-in.o:rk_headset_irq_hook_adc.c:(.text+0x2f2288): more undefined references to `g_test_adapter' follow<br>
+drivers/built-in.o: In function `wifi_init_exit_module':<br>
+/HDD500G/RK3399_Android-7.0_TAB_SDK/kernel/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c:195:
+undefined reference to `rockchip_wifi_init_module_rtkwifi'<br>
+/HDD500G/RK3399_Android-7.0_TAB_SDK/kernel/drivers/net/wireless/rockchip_wlan/wifi_sys/rkwifi_sys_iface.c:197:
+undefined reference to `rockchip_wifi_exit_module_rtkwifi'<br>
+<h2>Directions</h2>
+for example RTL8822BE<br>
+the rockchip wifi driver director is ./kernel/drivers/net/wireless/rockchip_wlan/
+    
+<h3>1. Modify Makefile<br>
+</h3>
+change  Platform Related<br>
+<span style="color: black; font-weight: bold;"><span style="color: rgb(51, 255, 51);">CONFIG_PLATFORM_ARM_RK3188 = y</span><br>
+</span><span style="color: black; font-weight: bold;"><br>
+</span>
+and remark<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"># EXTRA_CFLAGS += -DRTW_SUPPORT_PLATFORM_SHUTDOWN</span><br>
+<br>
+if build error message show<br>
+drivers/net/wireless/rockchip_wlan/rtl8812au/Makefile:244: ... ./kernel/hal/phydm/phydm.mk: No such file or directory<br>
+<br>
+add code<br>
+
+<span style="font-weight: bold; color: rgb(51, 255, 51);">EXTRA_CFLAGS += -I$(src)/hal/phydm</span><br>
+
+<span style="color: black; font-weight: bold;"></span>and remark<br>
+
+<span style="font-weight: bold;"># include $(TopDIR)/hal/phydm/phydm.mk</span><br>
+<br>
+<h3>2. Modify Kconfig<br>
+
+</h3>
+
+edit "<span style="font-weight: bold;">depends on </span><span style="color: red; font-weight: bold;">PCIE</span>" to "<span style="font-weight: bold;">depends on </span><span style="color: rgb(51, 255, 51);"><span style="font-weight: bold;">PCI</span><span style="color: black;">"</span></span><br>
+<br>
+
+    <h3>3 .Modify rtw_android.c<br>
+</h3>modify ./kernel/drivers/net/wireless/rockchip_wlan/rtl8822be/os_dep/linux/rtw_android.c<br>
+search function <span style="font-weight: bold;">void *wifi_get_country_code(char *ccode)</span><br>
+mark<br>
+<p style="background-color: silver;">//&nbsp; if (wifi_control_data &amp;&amp; wifi_control_data-&gt;get_country_code)<br>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return wifi_control_data-&gt;get_country_code(ccode);</p>
+<h3>4. Modify intf.c file<br>
+</h3>
+modify ./kernel/drivers/net/wireless/rockchip_wlan/rtl8822be/os_dep/linux/pci_intf.c<br>
+mark
+<p style="background-color: silver;">//module_init(rtw_drv_entry);<br>
+//module_exit(rtw_drv_halt);</p>
+<p>and add.<br>
+ </p>
+
+    <p style="background-color: silver;">#include "rtw_version.h"<br>
+#include &lt;linux/rfkill-wlan.h&gt;<br>
+extern int get_wifi_chip_type(void);<br>
+extern int rockchip_wifi_power(int on);<br>
+extern int rockchip_wifi_set_carddetect(int val);<br>
+<br>
+int rockchip_wifi_init_module_rtkwifi(void)<br>
+{<br>
+#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP<br>
+&nbsp;&nbsp;&nbsp; int type = get_wifi_chip_type();<br>
+&nbsp;&nbsp;&nbsp; if (type &lt; WIFI_AP6XXX_SERIES || type == WIFI_ESP8089) return 0;<br>
+#endif<br>
+&nbsp;&nbsp;&nbsp; printk("\n");<br>
+&nbsp;&nbsp;&nbsp; printk("=======================================================\n");<br>
+&nbsp;&nbsp;&nbsp; printk("==== Launching Wi-Fi driver! (Powered by Rockchip) ====\n");<br>
+&nbsp;&nbsp;&nbsp; printk("=======================================================\n");<br>
+&nbsp;&nbsp;&nbsp; printk("Realtek 8822B PCIE WiFi driver (Powered by Rockchip,Ver %s) init.\n", DRIVERVERSION);<br>
+<br>
+&nbsp;&nbsp;&nbsp; rockchip_wifi_power(1);<br>
+&nbsp;&nbsp;&nbsp; rockchip_wifi_set_carddetect(1);<br>
+<br>
+&nbsp;&nbsp;&nbsp; return rtw_drv_entry();<br>
+}<br>
+<br>
+void rockchip_wifi_exit_module_rtkwifi(void)<br>
+{<br>
+#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP<br>
+&nbsp;&nbsp;&nbsp; int type = get_wifi_chip_type();<br>
+&nbsp;&nbsp;&nbsp; if (type &lt; WIFI_AP6XXX_SERIES || type == WIFI_ESP8089) return;<br>
+#endif<br>
+&nbsp;&nbsp;&nbsp; printk("\n");<br>
+&nbsp;&nbsp;&nbsp; printk("=======================================================\n");<br>
+&nbsp;&nbsp;&nbsp; printk("==== Dislaunching Wi-Fi driver! (Powered by Rockchip) ====\n");<br>
+&nbsp;&nbsp;&nbsp; printk("=======================================================\n");<br>
+&nbsp;&nbsp;&nbsp; printk("Realtek 8822B PCIE WiFi driver (Powered by Rockchip,Ver %s) init.\n", DRIVERVERSION);<br>
+<br>
+&nbsp;&nbsp;&nbsp; rtw_drv_halt();<br>
+<br>
+&nbsp;&nbsp;&nbsp; rockchip_wifi_set_carddetect(0);<br>
+&nbsp;&nbsp;&nbsp; rockchip_wifi_power(0);<br>
+}<br>
+<br>
+#ifdef CONFIG_WIFI_BUILD_MODULE<br>
+module_init(rockchip_wifi_init_module_rtkwifi);<br>
+module_exit(rockchip_wifi_exit_module_rtkwifi);<br>
+#else<br>
+#ifdef CONFIG_WIFI_LOAD_DRIVER_WHEN_KERNEL_BOOTUP<br>
+late_initcall(rockchip_wifi_init_module_rtkwifi);<br>
+module_exit(rockchip_wifi_exit_module_rtkwifi);<br>
+#else<br>
+EXPORT_SYMBOL(rockchip_wifi_init_module_rtkwifi);<br>
+EXPORT_SYMBOL(rockchip_wifi_exit_module_rtkwifi);<br>
+#endif<br>
+#endif</p>
+<h3>Other Error message</h3>
+大部分是IF 指令沒有加 " { } " , 針對報錯位置添加大括號即可<br>
+<br>
+
+</body></html>
