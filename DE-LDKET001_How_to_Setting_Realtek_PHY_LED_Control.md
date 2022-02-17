@@ -1,25 +1,29 @@
 **No:DE-LDKET001 2020-02-04**
-
-# **How to Setting Realtek PHY LED Control**
-
+# How to Setting Realtek PHY LED Control
 ## Key Word:
 
 Linux ; Realtek PHY ; RTL8812 ; LED ;
 
 ## Description
 
-To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of realtek.c .
-The realtek.c path is ./kernel/drivers/net/phy/realtek.c
-or
-./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of realtek.c . The realtek.c path is
+
+`./kernel/drivers/net/phy/realtek.c`
+or `./kernel/drivers/net/ethernet/realtek.c` or other path. 
 
 ## Directions
+
 Need to disable eee LED function and set LED configuration.
 Add the LED register setting in finction code.
+
 for example:
+
 a: NXP i.max kernel 5.4.70
-`rtl8211f`
+
+ `rtl8211f`
+
 find the function
+
 `static int rtl8211f_config_init(struct phy_device *phydev)`
 
 ```c
@@ -54,8 +58,11 @@ phy_write_paged(phydev, 0x7, 0x1c, 0x0427);
 ```
 
 b: NXP i.max kernel 4.9.51
+
 `rtl8211f` 
+
 find the function
+
 `static int rtl8211f_config_init(struct phy_device *phydev)`
 
 ```c
