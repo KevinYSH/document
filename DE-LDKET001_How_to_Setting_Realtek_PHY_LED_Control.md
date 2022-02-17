@@ -1,55 +1,93 @@
-** No:DE-LDKET001 2020-02-04 **
+**No:DE-LDKET001 2020-02-04**
 
-# How to Setting Realtek PHY LED Control 
+# **How to Setting Realtek PHY LED Control**
+
 ## Key Word:
-Linux ; Realtek PHY ; RTL8211 ; LED ;
+
+Linux ; Realtek PHY ; RTL8812 ; LED ;  
+
 ## Description
-To use the Rrealtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of stmmac_mdio.c .
-The stmmac_mdio.c path is ./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+
+To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of realtek.c .  
+The realtek.c path is ./kernel/drivers/net/phy/realtek.c 
+or
+./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+
 ## Directions
-1. Need to disable eee LED function and set LED configuration
-2. To add config code for example use RTL8211E
-##### function
-	a. define function
-```cpp
-// external PHY LED Control add.
-static int phy_disable_eee_LED(struct phy_device *phydev);
-static int phy_rtl8211e_led_fixup(struct phy_device *phydev);
-```
+Need to disable eee LED function and set LED configuration  
 
-	b. add in stmmac_dvr_probe() function
-```cpp
-    ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_disable_eee_LED);
-    if (ret)
-        pr_warn("Cannot register PHY board eee LED.\n");
-    ret = phy_register_fixup_for_uid(RTL_8211E_PHY_ID, 0xffffffff, phy_rtl8211e_led_fixup);
-    if (ret)
-        pr_warn("Cannot register PHY board fixup.\n");
-```
+Add the LED register setting in finction code. 
+for example:
+a: NXP i.max kernel 5.4.70
+`rtl8211f`
+find the function 
+`static int rtl8211f_config_init(struct phy_device *phydev)`
 
-	c. add function
-```cpp
-    static int phy_rtl8211e_led_fixup(struct phy_device *phydev)
-    {
-        pr_info("PHY setting RTL8211 LED function. \n");
-        //switch to extension page44
-        phy_write(phydev, 31, 0x07);
-        mdelay(10);
-        phy_write(phydev, 30, 0x2c);
-        phy_write(phydev, 26, 0x0040); //set led act
-        phy_write(phydev, 28, 0x0042); //set led link
-        phy_write(phydev,31,0x00); //switch back to page0
-        return 0;
-    }
-
-    static int phy_disable_eee_LED(struct phy_device *phydev)
-    {
-        pr_info("PHY disable RTL8211E EEE LED function. \n");
-        phy_write(phydev, 31, 0x5);
-        mdelay(10);
-        phy_write(phydev, 5, 0x8b82);
-        phy_write(phydev, 6, 0x052b);
-        phy_write(phydev, 31, 0x0);
-        return 0;
-    }
+```c
+    //Disable EEE LED
+    //Reg31 = 0x0D04
+    //Reg17 = 0x0000
+    //Configruation LED setting.  LED0=link/Act ,LED1=speed_100M, LED2=speed_1000M
+    //Reg16 = 0x205b
+    //Reg31 = 0x0000
+    
+    phy_write_paged(phydev, 0xd04, 0x11, 0);
+    phy_write_paged(phydev, 0xd04, 0x10, 0x205b);
 ```
+`rtl8211e`
+```c
+//Disable EEE LED 
+//Reg31 = 0x0005
+//Reg5  = 0x8B82
+//Reg6  = 0x052B
+//Reg31 = 0x0000
+//Configruation LED setting. LED0=link/Act ,LED1=speed_100M, LED2=speed_1000M
+//Reg31 = 0x0007
+//Reg30 = 0x002C
+//Reg26 = 0x0010
+//Reg28 = 0x0427
+//Reg31 = 0x0000
+
+phy_write_paged(phydev, 0x5, 0x5, 0x8b82);
+phy_write_paged(phydev, 0x5, 0x6, 0x052b);
+phy_write_paged(phydev, 0x7, 0x1a, 0x0010);
+phy_write_paged(phydev, 0x7, 0x1c, 0x0427);
+```
+b: NXP i.max kernel 4.9.51
+`rtl8211f`
+find the function 
+`static int rtl8211f_config_init(struct phy_device *phydev)`
+
+```c
+    //Disable EEE LED
+    //Reg31 = 0x0D04
+    //Reg17 = 0x0000
+    //Configruation LED setting.  LED0=link/Act ,LED1=speed_100M, LED2=speed_1000M
+    //Reg16 = 0x205b
+    //Reg31 = 0x0000
+	
+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0xd04);
+	phy_write(phydev, 0x11, 0);
+	phy_write(phydev, 0x10, 0x205b);
+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
+```
+`rtl8211e`
+```c
+//Disable EEE LED 
+//Reg31 = 0x0005
+//Reg5  = 0x8B82
+//Reg6  = 0x052B
+//Reg31 = 0x0000
+//Configruation LED setting. LED0=link/Act ,LED1=speed_100M, LED2=speed_1000M
+//Reg31 = 0x0007
+//Reg30 = 0x002C
+//Reg26 = 0x0010
+//Reg28 = 0x0427
+//Reg31 = 0x0000
+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x5);
+	phy_write(phydev, 0x5, 0x8b82);
+	phy_write(phydev, 0x6, 0x052b);
+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x7);
+	phy_write(phydev, 0x1a, 0x0010);
+	phy_write(phydev, 0x1c, 0x0427);
+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
