@@ -24,7 +24,7 @@ for example:
 
 find the function
 
-`static int rtl8211f_config_init(struct phy_device *phydev)`
+`static int rtl8211f_config_initr(struct phy_device *phydev)`
 
 ```c
     //Disable EEE LED
@@ -69,7 +69,7 @@ find the function
 
 find the function
 
-`static int rtl8211f_config_init(struct phy_device *phydev)`
+`static int rtl8211f_config_initr(struct phy_device *phydev)`
 
 ```c
     //Disable EEE LED
