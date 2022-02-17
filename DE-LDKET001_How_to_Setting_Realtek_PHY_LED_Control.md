@@ -16,8 +16,8 @@ or
 ## Directions
 Need to disable eee LED function and set LED configuration  
 
-Add the LED register setting in finction code. 
-for example:
+Add the LED register setting in finction code.
+for example: 
 a: NXP i.max kernel 5.4.70
 `rtl8211f`
 find the function 
@@ -53,9 +53,9 @@ phy_write_paged(phydev, 0x5, 0x6, 0x052b);
 phy_write_paged(phydev, 0x7, 0x1a, 0x0010);
 phy_write_paged(phydev, 0x7, 0x1c, 0x0427);
 ```
-b: NXP i.max kernel 4.9.51
-`rtl8211f`
-find the function 
+b: NXP i.max kernel 4.9.51 
+`rtl8211f` 
+find the function
 `static int rtl8211f_config_init(struct phy_device *phydev)`
 
 ```c
