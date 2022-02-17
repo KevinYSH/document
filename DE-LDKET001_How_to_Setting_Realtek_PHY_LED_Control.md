@@ -26,7 +26,7 @@ find the function
 
 `static int rtl8211f_config_initr(struct phy_device *phydev)`
 
-```
+```c
 //Disable EEE LED
 //Reg31 = 0x0D04
 //Reg17 = 0x0000
@@ -44,7 +44,7 @@ find the function
 
 `static int rtl8211e_config_intr(struct phy_device *phydev)`
 
-```
+```c
 //Disable EEE LED 
 //Reg31 = 0x0005
 //Reg5  = 0x8B82
@@ -71,7 +71,7 @@ find the function
 
 `static int rtl8211f_config_initr(struct phy_device *phydev)`
 
-```
+```c
 //Disable EEE LED
 //Reg31 = 0x0D04
 //Reg17 = 0x0000
@@ -91,7 +91,7 @@ find the function
 
 `static int rtl8211e_config_intr(struct phy_device *phydev)`
 
-```
+```c
 //Disable EEE LED 
 //Reg31 = 0x0005
 //Reg5  = 0x8B82
