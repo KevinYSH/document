@@ -18,7 +18,7 @@ Add the LED register setting in finction code.
 
 for example:
 
-a: NXP i.max kernel 5.4.70
+###### a: NXP i.max kernel 5.4.70
 
  `rtl8211f`
 
@@ -37,7 +37,13 @@ find the function
     phy_write_paged(phydev, 0xd04, 0x11, 0);
     phy_write_paged(phydev, 0xd04, 0x10, 0x205b);
 ```
+
 `rtl8211e`
+
+find the function
+
+`static int rtl8211e_config_intr(struct phy_device *phydev)`
+
 ```c
 //Disable EEE LED 
 //Reg31 = 0x0005
@@ -56,8 +62,8 @@ phy_write_paged(phydev, 0x5, 0x6, 0x052b);
 phy_write_paged(phydev, 0x7, 0x1a, 0x0010);
 phy_write_paged(phydev, 0x7, 0x1c, 0x0427);
 ```
-
-b: NXP i.max kernel 4.9.51
+----
+###### b: NXP i.max kernel 4.9.51
 
 `rtl8211f` 
 
@@ -78,7 +84,13 @@ find the function
 	phy_write(phydev, 0x10, 0x205b);
 	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
 ```
+
 `rtl8211e`
+
+find the function
+
+`static int rtl8211e_config_intr(struct phy_device *phydev)`
+
 ```c
 //Disable EEE LED 
 //Reg31 = 0x0005
