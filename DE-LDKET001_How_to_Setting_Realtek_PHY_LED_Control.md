@@ -44,7 +44,7 @@ static int rtl8211f_config_init(struct phy_device *phydev)
 	return 0;
 }
 ```
-
+------------
 `rtl8211e`
 
 add code in function
@@ -104,7 +104,7 @@ static int rtl8211f_config_init(struct phy_device *phydev)
 	return 0;
 }
 ```
-
+------------
 `rtl8211e`
 
 add the function with led defind code.
