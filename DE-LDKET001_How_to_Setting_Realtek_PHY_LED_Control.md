@@ -4,23 +4,22 @@
 
 ## Key Word:
 
-Linux ; Realtek PHY ; RTL8812 ; LED ;  
+Linux ; Realtek PHY ; RTL8812 ; LED ;
 
 ## Description
 
-To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of realtek.c .  
-The realtek.c path is ./kernel/drivers/net/phy/realtek.c 
+To use the realtek Ethernet PHY to set the LED configuration in the system,you need to modify the file of realtek.c .
+The realtek.c path is ./kernel/drivers/net/phy/realtek.c
 or
 ./kernel/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
 
 ## Directions
-Need to disable eee LED function and set LED configuration  
-
+Need to disable eee LED function and set LED configuration.
 Add the LED register setting in finction code.
-for example: 
+for example:
 a: NXP i.max kernel 5.4.70
 `rtl8211f`
-find the function 
+find the function
 `static int rtl8211f_config_init(struct phy_device *phydev)`
 
 ```c
@@ -53,7 +52,8 @@ phy_write_paged(phydev, 0x5, 0x6, 0x052b);
 phy_write_paged(phydev, 0x7, 0x1a, 0x0010);
 phy_write_paged(phydev, 0x7, 0x1c, 0x0427);
 ```
-b: NXP i.max kernel 4.9.51 
+
+b: NXP i.max kernel 4.9.51
 `rtl8211f` 
 find the function
 `static int rtl8211f_config_init(struct phy_device *phydev)`
@@ -65,7 +65,7 @@ find the function
     //Configruation LED setting.  LED0=link/Act ,LED1=speed_100M, LED2=speed_1000M
     //Reg16 = 0x205b
     //Reg31 = 0x0000
-	
+
 	phy_write(phydev, RTL8211F_PAGE_SELECT, 0xd04);
 	phy_write(phydev, 0x11, 0);
 	phy_write(phydev, 0x10, 0x205b);
@@ -91,3 +91,4 @@ find the function
 	phy_write(phydev, 0x1a, 0x0010);
 	phy_write(phydev, 0x1c, 0x0427);
 	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
+```
