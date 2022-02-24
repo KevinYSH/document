@@ -1,4 +1,4 @@
-** No:DE-LDRSW004 2022-02-24 **
+**No:DE-LDRSW004 2022-02-24 **
 # How to Read/Write RTL Switch register
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register
@@ -27,6 +27,7 @@ rtl8367c_getAsicReg(0x1202, &regValue);
 printf("reg_read \n", regValue );
 
 ```
+
 2. R/W register by port
 example:
 
