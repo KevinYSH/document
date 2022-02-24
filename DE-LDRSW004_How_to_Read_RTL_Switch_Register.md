@@ -38,6 +38,6 @@ example:
 smrtl8367c_getAsicPHYReg(UTP_PORT0,0x1, &regData ); // Read Port0 status register.
 
 /* Reset Port1 */
-smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x0800 ); 
-smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x9200 ); 
+smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x0800 ); // Port Link down
+smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x9200 ); // Port Link Up
 ```
