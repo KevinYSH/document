@@ -4,7 +4,7 @@
 Switch API, MDC, MDIO, SMI, register
 ## Description
 1. In order to confirm that the interface action of switch is normal, it can be realized by read/write `smi_read()` / `smi_write()` or `rtl8367c_getAsicReg`/`rtl8367c_setAsicReg`
-2. To reading the register of the port by use Read `rtl8367c_getAsicPHYReg()` and Write `rtl8367c_setAsicPHYReg()`
+2. To reading the register of the port by use Read/Write `rtl8367c_getAsicPHYReg()` / `rtl8367c_setAsicPHYReg()`
 ## Directions
 1. R/W register
 example:
@@ -28,10 +28,12 @@ printf("reg_read \n", regValue );
 
 ```
 2. R/W register by port
+example:
 
 Read register of Port_0 Reg=1 port status.
+
 Setting Port_1 reset.
-example:
+
 
 ```cpp
 smrtl8367c_getAsicPHYReg(UTP_PORT0,0x1, &regData ); // Read Port0 status register.
