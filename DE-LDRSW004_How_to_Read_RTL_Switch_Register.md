@@ -1,4 +1,4 @@
-**No:DE-LDRSW004 2022-02-24 **
+**No:DE-LDRSW004 2022-02-24**
 # How to Read/Write RTL Switch register
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register
@@ -7,6 +7,7 @@ Switch API, MDC, MDIO, SMI, register
 2. To reading the register of the port by use Read/Write `rtl8367c_getAsicPHYReg()` / `rtl8367c_setAsicPHYReg()`
 ## Directions
 1. R/W register
+
 example:
 
 ```cpp
@@ -29,14 +30,11 @@ printf("reg_read \n", regValue );
 ```
 
 2. R/W register by port
+
 example:
 
-Read register of Port_0 Reg=1 port status.
-
-Setting Port_1 reset.
-
-
 ```cpp
+/* Read register of Port_0 Reg=1 port status. */
 smrtl8367c_getAsicPHYReg(UTP_PORT0,0x1, &regData ); // Read Port0 status register.
 
 /* Reset Port1 */
