@@ -2,7 +2,7 @@
 # How to Setting Realtek PHY LED Control
 ## Key Word:
 
-Linux ; Realtek PHY ; RTL8812 ; LED ;
+Linux ; Realtek PHY ; RTL8211 ; LED ;
 
 ## Description
 
