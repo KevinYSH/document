@@ -1,0 +1,58 @@
+
+rtk_stat_port_getAll(UTP_PORT0, &port_cntrs);
+
+
+display_8367r_port_stat(portNum, &port_cntrs);
+
+void display_8367r_port_stat(uint32 port, rtk_stat_port_cntr_t *pPort_cntrs)
+{
+
+        rtlglue_printf("Rx counters\n");
+
+        rtlglue_printf("   ifInOctets  %llu\n", pPort_cntrs->ifInOctets);
+        rtlglue_printf("   etherStatsOctets  %llu\n", pPort_cntrs->etherStatsOctets);
+        rtlglue_printf("   ifInUcastPkts  %u\n", pPort_cntrs->ifInUcastPkts);
+        rtlglue_printf("   etherStatsMcastPkts  %u\n", pPort_cntrs->etherStatsMcastPkts);
+        rtlglue_printf("   etherStatsBcastPkts  %u\n", pPort_cntrs->etherStatsBcastPkts);
+
+        rtlglue_printf("   StatsFCSErrors  %u\n", pPort_cntrs->dot3StatsFCSErrors);
+        rtlglue_printf("   StatsSymbolErrors  %u\n", pPort_cntrs->dot3StatsSymbolErrors);
+        rtlglue_printf("   InPauseFrames  %u\n", pPort_cntrs->dot3InPauseFrames);
+        rtlglue_printf("   ControlInUnknownOpcodes  %u\n", pPort_cntrs->dot3ControlInUnknownOpcodes);
+        rtlglue_printf("   etherStatsFragments  %u\n", pPort_cntrs->etherStatsFragments);
+        rtlglue_printf("   etherStatsJabbers  %u\n", pPort_cntrs->etherStatsJabbers);
+        rtlglue_printf("   etherStatsDropEvents  %u\n", pPort_cntrs->etherStatsDropEvents);
+
+        rtlglue_printf("   etherStatsUndersizePkts  %u\n", pPort_cntrs->etherStatsUndersizePkts);
+        rtlglue_printf("   etherStatsOversizePkts  %u\n", pPort_cntrs->etherStatsOversizePkts);
+
+        rtlglue_printf("   Len= 64: %u pkts, 65 - 127: %u pkts, 128 - 255: %u pkts\n",
+                pPort_cntrs->etherStatsPkts64Octets,
+                pPort_cntrs->etherStatsPkts65to127Octets,
+                pPort_cntrs->etherStatsPkts128to255Octets);
+        rtlglue_printf("       256 - 511: %u pkts, 512 - 1023: %u pkts, 1024 - 1518: %u pkts\n",
+                pPort_cntrs->etherStatsPkts256to511Octets,
+                pPort_cntrs->etherStatsPkts512to1023Octets,
+                pPort_cntrs->etherStatsPkts1024toMaxOctets);
+
+        rtlglue_printf("\nOutput counters\n");
+
+        rtlglue_printf("   ifOutOctets  %llu\n", pPort_cntrs->ifOutOctets);
+        rtlglue_printf("   ifOutUcastPkts  %u\n", pPort_cntrs->ifOutUcastPkts);
+        rtlglue_printf("   ifOutMulticastPkts  %u\n", pPort_cntrs->ifOutMulticastPkts);
+        rtlglue_printf("   ifOutBrocastPkts  %u\n", pPort_cntrs->ifOutBrocastPkts);
+
+        rtlglue_printf("   StatsSingleCollisionFrames  %u\n", pPort_cntrs->dot3StatsSingleCollisionFrames);
+        rtlglue_printf("   StatsMultipleCollisionFrames  %u\n", pPort_cntrs->dot3StatsMultipleCollisionFrames);
+        rtlglue_printf("   StatsDeferredTransmissions  %u\n", pPort_cntrs->dot3StatsDeferredTransmissions);
+        rtlglue_printf("   StatsLateCollisions  %u\n", pPort_cntrs->dot3StatsLateCollisions);
+        rtlglue_printf("   etherStatsCollisions  %u\n", pPort_cntrs->etherStatsCollisions);
+        rtlglue_printf("   StatsExcessiveCollisions  %u\n", pPort_cntrs->dot3StatsExcessiveCollisions);
+        rtlglue_printf("   OutPauseFrames  %u\n", pPort_cntrs->dot3OutPauseFrames);
+        rtlglue_printf("   dot1dBasePortDelayExceededDiscards  %u\n", pPort_cntrs->dot1dBasePortDelayExceededDiscards);
+        rtlglue_printf("   dot1dTpPortInDiscards  %u\n", pPort_cntrs->dot1dTpPortInDiscards);
+        rtlglue_printf("   outOampduPkts  %u\n", pPort_cntrs->outOampduPkts);
+        rtlglue_printf("   inOampduPkts  %u\n", pPort_cntrs->inOampduPkts);
+        rtlglue_printf("   pktgenPkts  %u\n", pPort_cntrs->pktgenPkts);
+
+}
