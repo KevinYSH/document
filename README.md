@@ -1,11 +1,9 @@
 ### Document quick link
-[DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK](https://github.com/KevinYSH/html/blob/master/DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK.html "DE-LDKWI001 ")
+[DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK](https://github.com/KevinYSH/html/blob/master/DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK.html "DE-LDKWI001 ") HTML
 
-[DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK](https://github.com/KevinYSH/html/blob/master/DE-LDKWI001_How_to_Portting_WiFi_Driver_to_Rockchip_SDK.html "DE-LDKWI001 ")
+[DE-LDRSW002_How_to_Use_RTL_Switch_RGMII](https://github.com/KevinYSH/html/blob/master/DE-LDRSW002_How_to_Use_RTL_Switch_RGMII.html ) HTML
 
-[DE-LDRSW002_How_to_Use_RTL_Switch_RGMII](https://github.com/KevinYSH/html/blob/master/DE-LDRSW002_How_to_Use_RTL_Switch_RGMII.html )
-
-[DE-LDRSW003_How_to_Use_RTL_Switch_SGMII](https://github.com/KevinYSH/html/blob/master/DE-LDRSW003_How_to_Use_RTL_Switch_SGMII.html )
+[DE-LDRSW003_How_to_Use_RTL_Switch_SGMII](https://github.com/KevinYSH/html/blob/master/DE-LDRSW003_How_to_Use_RTL_Switch_SGMII.html ) HTML
 
 [DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface](https://github.com/KevinYSH/html/blob/master/DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface.md "DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface")
 
