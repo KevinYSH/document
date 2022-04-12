@@ -34,6 +34,14 @@ rtk_led_operation_set(LED_OP_PARALLEL); // use the switch internal LED pin out.
 //rtk_led_serialMode_set(LED_ACTIVE_HIGH);
 /* for RTL8370MB need to set. */
 rtl8367c_setAsicReg(0x1b3a, 0x1fff);
+/* 0x1b3a defind. */
+/* bit[14:13]	 fg_serial_led_shift_sequence */
+/*serial LED shift sequence */
+/* 00: High port LED0->Low  port LED0->High port LED1->Low  port LED1->High port LED2->Low  port LED2 */
+/* 01: High port LED0->High port LED1->High port LED2->Low  port LED0->Low  port LED1->Low  port LED2 */
+/* 10: Low  port LED0->Low  port LED1->Low  port LED2->High port LED0->High port LED1->High port LED2 */
+/* 11: Low  port LED0->High port LED0->Low  port LED1->High port LED1->Low  port LED2->High port LED2 */
+
 /* bit[11:10] : LED group number, 00=LED off ; 01=LED0 ;10=LED0,LED1 ;11=LED0,LED1,LED2
 /* bit[9:0]   : LED Output port select, bit 0 to 7 enable =0x0ff */
 
