@@ -7,6 +7,6 @@
 
 [DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface](./DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface.md "DE-LDRSW003_How_to_Use_RTL_Switch_SGMII_interface")
 
-[DE-LDRSW004_How_to_Read_RTL_Switch_Register](https://github.com/KevinYSH/html/blob/master/DE-LDRSW004_How_to_Read_RTL_Switch_Register.md "DE-LDRSW004_How_to_Read_RTL_Switch_Register")
+[DE-LDRSW004_How_to_Read_RTL_Switch_Register](./DE-LDRSW004_How_to_Read_RTL_Switch_Register.md "DE-LDRSW004_How_to_Read_RTL_Switch_Register")
 
-[DE-LDRSW005_How_to_Set_RTL_Switch_LED](https://github.com/KevinYSH/html/blob/master/DE-LDRSW005_How_to_Set_RTL_Switch_LED.md "DE-LDRSW005_How_to_Set_RTL_Switch_LED")
+[DE-LDRSW005_How_to_Set_RTL_Switch_LED](./DE-LDRSW005_How_to_Set_RTL_Switch_LED.md "DE-LDRSW005_How_to_Set_RTL_Switch_LED")
