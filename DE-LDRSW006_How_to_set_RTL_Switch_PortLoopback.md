@@ -1,16 +1,16 @@
-** No:DE-LD*RSW006 2022-06-21 **
+*** No:DE-LD*RSW006 2022-06-21 **
 
-#How to set RTL Switch Port Loopback
+# How to set RTL Switch Port Loopback
 
-##Key Word:
+## Key Word:
 
 Switch API, MDC, MDIO, SMI, register, loopback
 
-##Description
+## Description
 
 Set up switch port loopback by setting port registers to test performance.
 
-##Directions
+## Directions
 
 1. set loopback port register `Reg 0x08b4`
 
@@ -21,7 +21,6 @@ Set up switch port loopback by setting port registers to test performance.
 | 4..0  | UTP_Port 4-0 | | 7..0   | UTP_Port 7-0 |
 
 2. Set the Traffic through root
-
 `Reg 0x08b5` ~ `Reg 0x08bf `is per-port setting the traffic through.
 
 | Register    | Description (5 port)| | Register    | Description (8 port) |
@@ -38,6 +37,7 @@ Set up switch port loopback by setting port registers to test performance.
 for exapmle:
 ex1:
 if set the EXT_port0 loopback of Realtek 8 port switch
+
 ```cpp
 rtl8367c_setAsicReg(0x8b4, 0x0100);
 rtl8367c_setAsicReg(0x8bd, 0x0100);
@@ -54,3 +54,4 @@ if set the UTP_port4 loopback of Realtek 8 port switch
 rtl8367c_setAsicReg(0x8b4, 0x0010);
 rtl8367c_setAsicReg(0x8b9, 0x0010);
 ```
+
