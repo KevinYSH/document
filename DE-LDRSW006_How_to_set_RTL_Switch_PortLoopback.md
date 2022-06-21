@@ -1,11 +1,17 @@
-*** No:DE-LD*RSW006 2022-06-21 **
+** No:DE-LD*RSW006 2022-06-21 **
 
 #How to set RTL Switch Port Loopback
+
 ##Key Word:
+
 Switch API, MDC, MDIO, SMI, register, loopback
+
 ##Description
+
 Set up switch port loopback by setting port registers to test performance.
+
 ##Directions
+
 1. set loopback port register `Reg 0x08b4`
 
 | bit   | Description (5 port) | | bit   | Description (8 port) |
@@ -15,6 +21,7 @@ Set up switch port loopback by setting port registers to test performance.
 | 4..0  | UTP_Port 4-0 | | 7..0   | UTP_Port 7-0 |
 
 2. Set the Traffic through root
+
 `Reg 0x08b5` ~ `Reg 0x08bf `is per-port setting the traffic through.
 
 | Register    | Description (5 port)| | Register    | Description (8 port) |
