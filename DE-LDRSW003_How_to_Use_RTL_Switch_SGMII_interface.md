@@ -30,16 +30,12 @@ rtk_port_sds_reset();
 ###### external port index tabel
 | index  | Mode  | index  | Mode |
 |:--:| ------------------ |:---:| -------------------- |
-| 0  | MODE_EXT_DISABLE   | 11  | MODE_EXT_1000X_100FX |
-| 1  | MODE_EXT_RGMII     | 12  | MODE_EXT_1000X       |
-| 2  | MODE_EXT_MII_MAC   | 13  | MODE_EXT_100FX       |
-| 3  | MODE_EXT_MII_PHY   | 14  | MODE_EXT_RGMII_2     |
-| 4  | MODE_EXT_TMII_MAC  | 15  | MODE_EXT_MII_MAC_2   |
-| 5  | MODE_EXT_TMII_PHY  | 16  | MODE_EXT_MII_PHY_2   |
-| 6  | MODE_EXT_GMII      | 17  | MODE_EXT_TMII_MAC_2  |
-| 7  | MODE_EXT_RMII_MAC  | 18  | MODE_EXT_TMII_PHY_2  |
-| 8  | MODE_EXT_RMII_PHY  | 19  | MODE_EXT_RMII_MAC_2  |
-| 9  | MODE_EXT_SGMII     | 20  | MODE_EXT_RMII_PHY_2  |
-| 10 | MODE_EXT_HSGMII    | 21  | MODE_EXT_END         |
+| 0  | MODE_EXT_DISABLE   |  7  | MODE_EXT_RMII_MAC    |
+| 1  | MODE_EXT_RGMII     |  8  | MODE_EXT_RMII_PHY    |
+| 2  | MODE_EXT_MII_MAC   |  9  | MODE_EXT_SGMII       |
+| 3  | MODE_EXT_MII_PHY   | 10  | MODE_EXT_HSGMII      |
+| 4  | MODE_EXT_TMII_MAC  | 11  | MODE_EXT_1000X_100FX |
+| 5  | MODE_EXT_TMII_PHY  | 12  | MODE_EXT_1000X       |
+| 6  | MODE_EXT_GMII      | 13  | MODE_EXT_100FX       |
 
 
