@@ -1,4 +1,4 @@
-*** No:DE-LD*RSW006 2022-06-21 **
+** No:DE-LD*RSW006 2022-06-21
 # How to set RTL Switch Port Loopback
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, loopback
