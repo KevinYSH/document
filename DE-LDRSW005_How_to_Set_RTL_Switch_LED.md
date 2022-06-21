@@ -1,4 +1,4 @@
-** No:DE-LDRSW005 2022-03-21
+**No:DE-LDRSW005 2022-03-21
 # How to Set RTL Switch LED
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, LED
