@@ -1,4 +1,4 @@
-**No:DE-LDRSW002 2022-06-21
+**No:DE-LDRSW002 2022-06-21 **
 # How to Use RTL Switch RGMII interface
 ## Key Word:
 Switch API, MDC, MDIO, SMI, RGMII
