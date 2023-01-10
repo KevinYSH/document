@@ -1,4 +1,4 @@
-**No:DE-LDRSW005 2022-03-21 **
+**No:DE-LDRSW005 2022-03-21**
 # How to Set RTL Switch LED
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, LED
@@ -59,3 +59,17 @@ rtk_led_OutputEnable_set(ENABLED);
 //...
 rtk_port_phyEnableAll_set(ENABLED);
 ```
+
+###### LED behavea select tabel
+| LED Mode  |
+|:--:| 
+| LED_CONFIG_LEDOFF      |
+| LED_CONFIG_LINK_ACT    |
+| LED_CONFIG_SPD1000     |
+| LED_CONFIG_SPD100      |
+| LED_CONFIG_SPD10       |
+| LED_CONFIG_SPD1000ACT  |
+| LED_CONFIG_SPD100ACT   |
+| LED_CONFIG_SPD10ACT    |
+| LED_CONFIG_SPD10010ACT |
+| LED_CONFIG_ACT         |

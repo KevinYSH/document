@@ -1,4 +1,4 @@
-**No:DE-LDRSW00 2023-01-10 **
+**No:DE-LDRSW00 2023-01-10**
 # How to set RTL Switch Jumbo Frame
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, Jumbo Frame
