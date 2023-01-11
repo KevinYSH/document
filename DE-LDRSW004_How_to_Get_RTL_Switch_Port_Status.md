@@ -7,18 +7,17 @@ Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC
 1. For confirming the port link status, you need to use the API function to get the port information.
 
 2. call function below,
+    a. Check the Ext. Port set 
+    `rtk_port_macForceLinkExt_get()`
 
-a. Check the Ext. Port set 
-`rtk_port_macForceLinkExt_get()`
-
-b. Read UTP port link status
-`rtk_port_phyStatus_get()`
-
-C. Read External port link status (RGMII , SGMII ...)
-`rtk_port_macStatus_get()`
-
-d. read mib counter per-Port
-`rtk_stat_port_getAll()`
+    b. Read UTP port link status
+    `rtk_port_phyStatus_get()`
+    
+    c. Read External port link status (RGMII , SGMII ...)
+    `rtk_port_macStatus_get()`
+    
+    d. read mib counter per-Port
+    `rtk_stat_port_getAll()`
     
 ## Directions
 example:
