@@ -49,7 +49,6 @@ void mail()
 
     // read MAC port Link status (RGMII)
     // rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
-
     port="EXT_PORT0";
     if ((retVal = rtk_port_macStatus_get(port, &pPortstatus)) == 0) {
         printf("Port %d ", port);
@@ -92,14 +91,12 @@ void mail()
         printf("error: rtk_port_phyStatus_get() retVAL=%d \n" ,retVAL);
     }
 
+    // read mib counter per-Port
+    rtk_stat_port_getAll(UTP_PORT0, &port_cntrs);
+    display_port_stat(portNum, &port_cntrs);
+
     ...
 }
-
-
-
-// read mib counter per-Port
-rtk_stat_port_getAll(UTP_PORT0, &port_cntrs);
-display_port_stat(portNum, &port_cntrs);
 
 void display_port_stat(uint32 port, rtk_stat_port_cntr_t *pPort_cntrs)
 {
