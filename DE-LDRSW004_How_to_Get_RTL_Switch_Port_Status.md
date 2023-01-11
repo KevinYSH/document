@@ -1,7 +1,7 @@
 **No:DE-LDRSW004 2019-12-13 **
 # How to Get RTL Switch Port Status
 ## Key Word:
-Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC
+Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC, mib counter
 ## Description
 
 1. For confirming the port link status, you need to use the API function to get the port information.
