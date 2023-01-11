@@ -9,12 +9,17 @@ Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC
 2. call function below,
 
 a. Check the Ext. Port set 
-`rtk_port_macForceLinkExt_get(rtk_port_t port, rtk_mode_ext_t mode, rtk_port_mac_ability_t *pPortability);`
+`rtk_port_macForceLinkExt_get()`
 
-b. 
+b. Read UTP port link status
+`rtk_port_phyStatus_get()`
 
+C. Read External port link status (RGMII , SGMII ...)
+`rtk_port_macStatus_get()`
 
-
+d. read mib counter per-Port
+`rtk_stat_port_getAll()`
+    
 ## Directions
 example:
 ```cpp
