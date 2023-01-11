@@ -18,11 +18,16 @@ b.
 ## Directions
 example:
 ```cpp
-rtk_api_ret_t retVal;
-// read External port seting
-// call rtk_port_macForceLinkExt_get();
-if ((retVal = rtk_port_macForceLinkExt_get(EXT_PORT0, &pMode, &pPortability) == RT_ERR_OK) {
-    printf(Port %d , "Mode %d \n", port,pMode);
+void mail()
+{
+    ...
+    
+    rtk_api_ret_t retVal;
+    // read External port seting
+    // call rtk_port_macForceLinkExt_get();
+    port="EXT_PORT0";
+    if ((retVal = rtk_port_macForceLinkExt_get(port, &pMode, &pPortability) == RT_ERR_OK) {
+        printf("Port %d , Mode %d \n", port,pMode);
         if (pPortability.link == 0) {
              printf( "LinkDown \n");
         }
@@ -37,21 +42,60 @@ if ((retVal = rtk_port_macForceLinkExt_get(EXT_PORT0, &pMode, &pPortability) == 
         printf( "Speed %s\n\n", (pPortability.speed) ==PortStatusLinkSpeed100M?"100M":
                                 ((pPortability.speed) ==PortStatusLinkSpeed1000M?"1G":
                                 ((pPortability.speed) ==PortStatusLinkSpeed10M?"10M":"Unkown")));
-esle {
-    printf( "Error: rtk_port_macForceLinkExt_get() retVAL=%d \n" ,retVAL);
+    esle {
+        printf( "Error: rtk_port_macForceLinkExt_get() retVAL=%d \n" ,retVAL);
+        }
     }
+
+    // read MAC port Link status (RGMII)
+    // rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
+
+    port="EXT_PORT0";
+    if ((retVal = rtk_port_macStatus_get(port, &pPortstatus)) == 0) {
+        printf("Port %d ", port);
+        if (sts.link == 0) {
+             printf( "LinkDown\n");
+        }
+        else {
+            printf( "LinkUp \n ");
+        }
+        printf( " NWay Mode %s\n", (pPortstatus.nway) ?"Enabled":"Disabled");
+        printf( " RXPause %s | ", (pPortstatus.rxpause) ?"Enabled":"Disabled");
+        printf( " TXPause %s\n", (pPortstatus.txpause) ?"Enabled":"Disabled");
+        printf( " Duplex %s | ", (pPortstatus.duplex) ?"Enabled":"Disabled");
+        printf( " Speed %s\n\n", (pPortstatus.speed) ==PortStatusLinkSpeed100M?"100M":
+                                ((pPortstatus.speed) ==PortStatusLinkSpeed1000M?"1G":
+                                ((pPortstatus.speed) ==PortStatusLinkSpeed10M?"10M":"Unkown")));
+    }
+    else { 
+        printf("error: rtk_port_macStatus_get() retVAL=%d \n" ,retVAL);
+    }
+    
+    // read LAN port Link status
+    // rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
+    port="UTP_PORT0";
+    if ((retVal = rtk_port_phyStatus_get(port, &pLinkStatus, &pSpeed, &pDuplex)) == 0) {
+        printf("Port %d , \n", port);
+    
+        if (pLinkStatus == 0) {
+            printf( " LinkDown\n");
+        }
+        else {
+            printf( " LinkUp \n");                                
+            printf( " Duplex = %s | ", pDuplex?"Full":"Half");
+            printf( " Speed %s\n\n", pSpeed==PortStatusLinkSpeed100M?"100M":
+                          (pSpeed==PortStatusLinkSpeed1000M?"1G":
+                          (pSpeed==PortStatusLinkSpeed10M?"10M":"Unkown")));
+        }
+    }
+    else { 
+        printf("error: rtk_port_phyStatus_get() retVAL=%d \n" ,retVAL);
+    }
+
+    ...
 }
 
-// read LAN port Link status
-rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
-ex:  rtk_port_phyStatus_get(UTP_PORT0, pLinkStatus, pSpeed, pDuplex);
 
-這個可以讀取目前Ext port 的連線狀態(RGMII)
-rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
-ex:  rtk_port_macStatus_get(EXT_PORT0, pPortstatus);
-
-
-rtk_port_macForceLinkExt_get(rtk_port_t port, rtk_mode_ext_t mode, rtk_port_mac_ability_t *pPortability);
 
 // read mib counter per-Port
 rtk_stat_port_getAll(UTP_PORT0, &port_cntrs);
