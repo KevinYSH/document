@@ -60,7 +60,7 @@ rtk_led_OutputEnable_set(ENABLED);
 rtk_port_phyEnableAll_set(ENABLED);
 ```
 
-###### LED behavea select tabel
+###### LED behavior select tabel
 | LED Mode  |
 |:--:| 
 | LED_CONFIG_LEDOFF      |
