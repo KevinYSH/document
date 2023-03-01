@@ -26,7 +26,7 @@ Set up switch port loopback by setting port registers to test performance.
 | :-----: | :----------- | -- | :-----: | :----------- |
 | 15..8   | Reserved     |    | 15..11  | Reserved     |
 | 7..6    | EXT_Port 1-0 |    | 10..8   | EXT_Port 1-0 |
-| 4..0    | UTP_Port 4-0 |    | 7..0    | UTP_Port 4-0 |
+| 4..0    | UTP_Port 4-0 |    | 7..0    | UTP_Port 7-0 |
 
 for exapmle:
 ex1:
