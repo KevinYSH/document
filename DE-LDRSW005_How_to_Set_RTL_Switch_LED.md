@@ -62,7 +62,7 @@ rtk_port_phyEnableAll_set(ENABLED);
 
 ###### LED behavior select tabel
 | LED Mode  |
-|:--:| 
+|:--| 
 | LED_CONFIG_LEDOFF      |
 | LED_CONFIG_LINK_ACT    |
 | LED_CONFIG_SPD1000     |
