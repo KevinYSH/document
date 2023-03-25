@@ -1,4 +1,4 @@
-**No:DE-LDRSW004 2019-12-13 **
+**No:DE-LDRSW004 2019-12-13**
 # How to Get RTL Switch Port Status
 ## Key Word:
 Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC, mib counter
@@ -97,8 +97,8 @@ void mail()
     }
 
     // read mib counter per-Port
-    rtk_stat_port_getAll(UTP_PORT0, &port_cntrs);
-    display_port_stat(portNum, &port_cntrs);
+    rtk_stat_port_getAll(port, &port_cntrs);
+    display_port_stat(port, &port_cntrs);
 
     ...
 }

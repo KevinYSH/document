@@ -35,9 +35,22 @@ example:
 
 ```cpp
 /* Read register of Port_0 Reg=1 port status. */
-smrtl8367c_getAsicPHYReg(UTP_PORT0,0x1, &regData ); // Read Port0 status register.
+rtl8367c_getAsicPHYReg(UTP_PORT0,0x1, &regData ); // Read Port0 status register.
 
 /* Reset Port1 */
-smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x0800 ); // Port Link down
-smrtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x9200 ); // Port Link Up
+rtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x0800 ); // Port Link down
+rtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x9200 ); // Port Link Up
+```
+
+3. chip reset
+example:
+
+```cpp
+/* reset chip */
+rtl8367c_setAsicRegBits(RTL8367C_REG_CHIP_RESET,RTL8367C_CHIP_RST_MASK,1);
+// or
+rtl8367c_setAsicReg(RTL8367C_REG_CHIP_RESET, 0x1);
+
+/* After reset switch must re-init. */
+
 ```
