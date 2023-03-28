@@ -23,7 +23,7 @@ Switch API, MDC, MDIO, SMI, Port, status, PHY, MAC, mib counter
 ## Directions
 example:
 ```cpp
-void mail()
+void main()
 {
     ...
     
