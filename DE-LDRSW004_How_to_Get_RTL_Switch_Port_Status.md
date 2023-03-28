@@ -29,7 +29,6 @@ void mail()
     
     rtk_api_ret_t retVal;
     // a. Check the Ext. Port set rtk_port_macForceLinkExt_get() 
-    // ex: read External port (EXT_PORT0) seting
     // call rtk_port_macForceLinkExt_get(port, &pMode, &pPortability);
     
     port="EXT_PORT0";
@@ -55,7 +54,6 @@ void mail()
     }
 
     // b. Read UTP port link status rtk_port_phyStatus_get()
-    // ex: read LAN port Link status
     // call rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
     
     port="UTP_PORT0";
@@ -78,7 +76,6 @@ void mail()
     }
 
     // c. Read External port link status (RGMII , SGMII ...) rtk_port_macStatus_get()
-    // ex: read MAC port Link status (RGMII); 
     // call rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus);
     
     port="EXT_PORT0";
@@ -103,7 +100,6 @@ void mail()
     }
     
     // d. read mib counter per-Port rtk_stat_port_getAll()
-    // ex: read mib counter per-Port
     //   1. clear the mib counter
     //   2. test the traffic
     //   3. print mib counter
