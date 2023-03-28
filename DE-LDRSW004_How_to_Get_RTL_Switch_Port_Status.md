@@ -31,6 +31,7 @@ void mail()
     // a. Check the Ext. Port set rtk_port_macForceLinkExt_get() 
     // ex: read External port (EXT_PORT0) seting
     // call rtk_port_macForceLinkExt_get(port, &pMode, &pPortability);
+    
     port="EXT_PORT0";
     if ((retVal = rtk_port_macForceLinkExt_get(port, &pMode, &pPortability) == RT_ERR_OK) {
         printf("Port %d , Mode %d \n", port,pMode);
@@ -56,6 +57,7 @@ void mail()
     // b. Read UTP port link status rtk_port_phyStatus_get()
     // ex: read LAN port Link status
     // call rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
+    
     port="UTP_PORT0";
     if ((retVal = rtk_port_phyStatus_get(port, &pLinkStatus, &pSpeed, &pDuplex)) == 0) {
         printf("Port %d , \n", port);
@@ -76,8 +78,9 @@ void mail()
     }
 
     // c. Read External port link status (RGMII , SGMII ...) rtk_port_macStatus_get()
-    // ex: read MAC port Link status (RGMII)
-    // call rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
+    // ex: read MAC port Link status (RGMII); 
+    // call rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus);
+    
     port="EXT_PORT0";
     if ((retVal = rtk_port_macStatus_get(port, &pPortstatus)) == 0) {
         printf("Port %d ", port);
@@ -98,10 +101,14 @@ void mail()
     else { 
         printf("error: rtk_port_macStatus_get() retVAL=%d \n" ,retVAL);
     }
+    
     // d. read mib counter per-Port rtk_stat_port_getAll()
     // ex: read mib counter per-Port
-        
-    rtk_stat_global_reset(); // clear all mib counter
+    //   1. clear the mib counter
+    //   2. test the traffic
+    //   3. print mib counter
+    
+    rtk_stat_global_reset(); // clear all mib counter and wait for traffic to be ready.
     
     port="UTP_PORT3";
     rtk_stat_port_getAll(port, &port_cntrs);
