@@ -28,8 +28,9 @@ void mail()
     ...
     
     rtk_api_ret_t retVal;
-    // read External port seting
-    // call rtk_port_macForceLinkExt_get();
+    // a. Check the Ext. Port set rtk_port_macForceLinkExt_get() 
+    // ex: read External port (EXT_PORT0) seting
+    // call rtk_port_macForceLinkExt_get(port, &pMode, &pPortability);
     port="EXT_PORT0";
     if ((retVal = rtk_port_macForceLinkExt_get(port, &pMode, &pPortability) == RT_ERR_OK) {
         printf("Port %d , Mode %d \n", port,pMode);
@@ -52,8 +53,31 @@ void mail()
         }
     }
 
-    // read MAC port Link status (RGMII)
-    // rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
+    // b. Read UTP port link status rtk_port_phyStatus_get()
+    // ex: read LAN port Link status
+    // call rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
+    port="UTP_PORT0";
+    if ((retVal = rtk_port_phyStatus_get(port, &pLinkStatus, &pSpeed, &pDuplex)) == 0) {
+        printf("Port %d , \n", port);
+    
+        if (pLinkStatus == 0) {
+            printf( " LinkDown\n");
+        }
+        else {
+            printf( " LinkUp \n");                                
+            printf( " Duplex = %s | ", pDuplex?"Full":"Half");
+            printf( " Speed %s\n\n", pSpeed==PortStatusLinkSpeed100M?"100M":
+                          (pSpeed==PortStatusLinkSpeed1000M?"1G":
+                          (pSpeed==PortStatusLinkSpeed10M?"10M":"Unkown")));
+        }
+    }
+    else { 
+        printf("error: rtk_port_phyStatus_get() retVAL=%d \n" ,retVAL);
+    }
+
+    // c. Read External port link status (RGMII , SGMII ...) rtk_port_macStatus_get()
+    // ex: read MAC port Link status (RGMII)
+    // call rtk_port_macStatus_get(rtk_port_t port, rtk_port_mac_ability_t *pPortstatus)
     port="EXT_PORT0";
     if ((retVal = rtk_port_macStatus_get(port, &pPortstatus)) == 0) {
         printf("Port %d ", port);
@@ -74,32 +98,18 @@ void mail()
     else { 
         printf("error: rtk_port_macStatus_get() retVAL=%d \n" ,retVAL);
     }
+    // d. read mib counter per-Port rtk_stat_port_getAll()
+    // ex: read mib counter per-Port
+        
+    rtk_stat_global_reset(); // clear all mib counter
     
-    // read LAN port Link status
-    // rtk_port_phyStatus_get(rtk_port_t port, rtk_port_linkStatus_t *pLinkStatus, rtk_port_speed_t *pSpeed, rtk_port_duplex_t *pDuplex)
-    port="UTP_PORT0";
-    if ((retVal = rtk_port_phyStatus_get(port, &pLinkStatus, &pSpeed, &pDuplex)) == 0) {
-        printf("Port %d , \n", port);
-    
-        if (pLinkStatus == 0) {
-            printf( " LinkDown\n");
-        }
-        else {
-            printf( " LinkUp \n");                                
-            printf( " Duplex = %s | ", pDuplex?"Full":"Half");
-            printf( " Speed %s\n\n", pSpeed==PortStatusLinkSpeed100M?"100M":
-                          (pSpeed==PortStatusLinkSpeed1000M?"1G":
-                          (pSpeed==PortStatusLinkSpeed10M?"10M":"Unkown")));
-        }
-    }
-    else { 
-        printf("error: rtk_port_phyStatus_get() retVAL=%d \n" ,retVAL);
-    }
-
-    // read mib counter per-Port
+    port="UTP_PORT3";
     rtk_stat_port_getAll(port, &port_cntrs);
     display_port_stat(port, &port_cntrs);
 
+    port="EXT_PORT0";
+    rtk_stat_port_getAll(port, &port_cntrs);
+    display_port_stat(port, &port_cntrs);
     ...
 }
 
