@@ -1,4 +1,4 @@
-**No:DE-LDKET001 2020-02-04**
+**No:DE-LDRET001 2020-02-04**
 # How to Setting Realtek PHY LED Control
 ## Key Word:
 
