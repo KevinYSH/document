@@ -5,8 +5,9 @@ Switch API, MDC, MDIO, SMI, register
 ## Description
 1. In order to confirm that the interface action of switch is normal, it can be realized by read/write `smi_read()` / `smi_write()` or `rtl8367c_getAsicReg`/`rtl8367c_setAsicReg`
 2. To reading the register of the port by use Read/Write `rtl8367c_getAsicPHYReg()` / `rtl8367c_setAsicPHYReg()`
+
 ## Directions
-1. R/W register
+**1.R/W register**
 
 example:
 
@@ -29,7 +30,7 @@ printf("reg_read \n", regValue );
 
 ```
 
-2. R/W register by port
+**2.R/W register by port**
 
 example:
 
@@ -42,7 +43,8 @@ rtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x0800 ); // Port Link down
 rtl8367c_setAsicPHYReg(UTP_PORT1,0x0, 0x9200 ); // Port Link Up
 ```
 
-3. chip reset
+**3.chip reset**
+
 example:
 
 ```cpp
@@ -53,4 +55,45 @@ rtl8367c_setAsicReg(RTL8367C_REG_CHIP_RESET, 0x1);
 
 /* After reset switch must re-init. */
 
+```
+
+**4. Get Chip ID**
+example:
+
+```cpp
+/* get chip ID */
+static int get_chip_id()
+{
+    rtk_uint32 data, regValue;
+    rtl8367c_setAsicReg(0x13C2, 0x0249)
+    rtl8367c_getAsicReg(0x1300, &data);
+    rtl8367c_getAsicReg(0x1301, &regValue);
+    rtl8367c_setAsicReg(0x13C2, 0x0000);
+    switch (data)
+    {
+        case 0x0276:
+        case 0x0597:
+        case 0x6367:
+            printf("Chip is RTL8367x ; id=0x%4.4x \n", data );
+            break;
+        case 0x0652:
+        case 0x6368:
+            printf("Chip is RTL8370Mx ; id=0x%4.4x \n", data );
+            break;
+        case 0x0801:
+        case 0x6511:
+            if( (regValue & 0x00F0) == 0x0080)
+            {
+                printf("Chip is RTL8363SC ; id=0x%4.4x \n", data );
+            } 
+            else 
+            {
+                printf("Chip is RTL8364NB ; id=0x%4.4x \n", data );
+            }
+            break;
+        default:
+            printf("not Chip ID !! id=0x%4.4x \n", data );
+            return -1 ;
+    }
+}
 ```

@@ -14,3 +14,5 @@
 [DE-LDRSW007 How to set RTL Switch Port Force Link](./DE-LDRSW007_How_to_set_RTL_Switch_Port_Force_Link.md "DE-LDRSW007_How_to_set_RTL_Switch_Port_Force_Link")
 
 [DE-LDRSW008 How to set RTL Switch Jumbo Frame](./DE-LDRSW008_How_to_set_RTL_Switch_Jumbo_Frame.md "DE-LDRSW008_How_to_set_RTL_Switch_Jumbo_Frame")
+
+[DE-LDRSW009 How to How to Read RTL Switch Register via MDIO](./DE-LDRSW009_How_to_Read_RTL_Switch_register_via_MDIO.md "DE-LDRSW009_How_to_Read_RTL_Switch_register_via_MDIO")
