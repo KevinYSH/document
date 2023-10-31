@@ -47,10 +47,10 @@ rtk_led_OutputEnable_set(ENABLED);
   /* 0x1b3a defind. */
   /* bit[14:13]	 fg_serial_led_shift_sequence */
   /*serial LED shift sequence */
-  /* 00: High port LED0(P8LED0)->Low  port LED0(P0LED0)---> High port LED1((P8LED1)->Low  port LED1(P0LED1)---> High port LED2(P8LED2)->Low  port LED2(P0LED2) */
-  /* 01: High port LED0(P8LED0)->High port LED1(P8LED1)->High port LED2(P8LED2)---> Low  port LED0(P0LED0)->Low  port LED1(P0LED1)->Low  port LED2(P0LED2) */
-  /* 10: Low  port LED0(P0LED0)->Low  port LED1(P0LED1)->Low  port LED2(P0LED2)---> High port LED0(P8LED0)->High port LED1(P8LED1)->High port LED2(P8LED2) */
-  /* 11: Low  port LED0(P0LED0)->High port LED0(P8LED0)---> Low  port LED1(P0LED2)-> High port LED1(P8LED1)---> Low  port LED2(P0LED2)->High port LED2(P8LED2) */
+  /* 00: High port LED0(P8LED0)--->Low  Port LED0(P0LED0)->High port LED1(P8LED1)--->Low  port LED1(P0LED1)->High port LED2(P8LED2)--->Low  port LED2(P0LED2) */
+  /* 01: High port LED0(P8LED0)->High Port LED1(P8LED1)->High port LED2(P8LED2)--->Low  port LED0(P0LED0)->Low  port LED1(P0LED1)->Low  port LED2(P0LED2) */
+  /* 10: Low  port LED0(P0LED0)->Low  port LED1(P0LED1)->Low  port LED2(P0LED2)--->High port LED0(P8LED0)->High port LED1(P8LED1)->High port LED2(P8LED2) */
+  /* 11: Low  port LED0(P0LED0)--->High port LED0(P8LED0)->Low  port LED1(P0LED2)--->High port LED1(P8LED1)->Low  port LED2(P0LED2)--->High port LED2(P8LED2) */
 
   /* bit[11:10] : LED group number, 00=LED off ; 01=LED0 ;10=LED0,LED1 ;11=LED0,LED1,LED2
   /* bit[9:0]   : LED Output port select, port 7 to 0 enable =0x0ff */
