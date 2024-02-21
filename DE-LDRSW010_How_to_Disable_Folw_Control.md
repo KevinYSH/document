@@ -1,4 +1,4 @@
-** No:DE-LDRSW010 2024-02-21 **
+**No:DE-LDRSW010 2024-02-21**
 # How to Disable Port Folw Control
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, Folw Control
@@ -12,15 +12,18 @@ Switch API, MDC, MDIO, SMI, register, Folw Control
 
 ## Directions
 1. Disable the low speed port flow control.
-2. Use function `rtk_port_phyAutoNegoAbility_set()` in API .
+2. Use function `rtk_port_phyAutoNegoAbility_set()` in API to disable flow control.
 ```
 rtk_port_phyAutoNegoAbility_set(rtk_port_t port, rtk_port_phy_ability_t *pAbility);
 pAbility->FC = DISABLED;
 pAbility->AsyFC = DISABLED;
 ```
+3. Use function `rtl8367c_setAsicFlowControlQueueEgressEnable()` in API to disable Queue.
+rtl8367c_setAsicFlowControlQueueEgressEnable(rtk_uint32 port, rtk_uint32 qid, rtk_uint32 enabled)
 
 for exapmle:
-Disable port 3 flow control.
+UTP_PORT3 is 100M port
+Disable UTP_PORT3 flow control.
 ```cpp
 
 pAbility->FC = DISABLED;
