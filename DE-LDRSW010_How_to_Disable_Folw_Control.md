@@ -1,4 +1,4 @@
-**No:DE-LDRSW010 2024-02-21 **
+** No:DE-LDRSW010 2024-02-21 **
 # How to Disable Port Folw Control
 ## Key Word:
 Switch API, MDC, MDIO, SMI, register, Folw Control
