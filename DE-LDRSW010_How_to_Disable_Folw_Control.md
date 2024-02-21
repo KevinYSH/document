@@ -6,9 +6,9 @@ Switch API, MDC, MDIO, SMI, register, Folw Control
 1. When UDP Muticast is sent to a mixed environment of 1G and 100M, it may cause traffic imbalance and affect 1G traffic.
 ```
 [PORT0] <--> [Switch] <--> [Port1] 1G
-                                        <--> [Port3] 100M
+                      <--> [Port3] 100M
 ```
-![](./Figures/DE-LDRSW010_Figure01.png)
+![](./DE-LDRSW010_Figure01.png)
 
 ## Directions
 1. Disable the low speed port flow control.
