@@ -9,9 +9,9 @@ Realtek LAN chip eFuse Programming ; PGtool ;
 Realtek LAN needs to write SVID/SMID, MAC, LED... and other parameters through PGtool.
 PGtool support three OS tools for `Windows` , `Linux` , `UEFI`
 Is can refer to the following link to operate.
-[Windows](./DE-LDKET002_Realtek_LAN_Chip_PGtool_UserGuide_Win.md)
-[Linux](.//ditor.tw/)
-[UEFI](.//ditor.tw/)
+[Windows](./DE-LDRET002_Realtek_LAN_Chip_PGtool_UserGuide_Win.md)
+[Linux](./DE-LDRET003_Realtek_LAN_Chip_PGtool_UserGuide_Linux.md)
+[UEFI](./DE-LDRET004_Realtek_LAN_Chip_PGtool_UserGuide_UEFI.md)
 
 ## Operate
 #### 1. Set the CFG file corresponding to the Chip
