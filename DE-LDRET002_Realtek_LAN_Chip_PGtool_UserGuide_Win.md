@@ -16,15 +16,15 @@ Is can refer to the following link to operate.
 ## Operate
 #### 1. Set the CFG file corresponding to the Chip
 ##### 1G LAN
-RTL8111G(S) -> 8168GEF.CFG ;
-RTL8111H(S) -> 8168HEF.CFG ;
-RTL8119I -> 8119EF.CFG ;
-RTL8111K -> 8168KEF.CFG ;
+RTL8111G(S) -> 8168GEF.CFG ; 
+RTL8111H(S) -> 8168HEF.CFG ; 
+RTL8119I -> 8119EF.CFG ; 
+RTL8111K -> 8168KEF.CFG ; 
 ##### 2.5G LAN
-RTL8125B(S) -> 8125BEF.CFG ;
-RTL8125BG(S) -> 8125BGEF.CFG ;
+RTL8125B(S) -> 8125BEF.CFG ; 
+RTL8125BG(S) -> 8125BGEF.CFG ; 
 ##### 5G LAN
-RTL8126 -> 8126EF.CFG ;
+RTL8126 -> 8126EF.CFG ; 
 #### 2. Use command line to stop the Realtek driver from working.
 Use Administrator to open Windows command line applications.
 ```bash
