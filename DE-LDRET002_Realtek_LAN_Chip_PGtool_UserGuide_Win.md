@@ -72,7 +72,8 @@ C:\> RTNicPgX64.efi /efuse /nodeid 112233445566
 C:\> RTNicPgX64.efi /efuse /# 1 /nodeid  ffeeddccbbaa 
 C:\> RTNicPgX64.efi /efuse /# 2 /nodeid  ffeeddccbbab
 C:\> RTNicPgX64.efi /efuse /# 3 /nodeid  ffeeddccbbac 
-''''''
+```
+
 * Modify SVID/SMID
 ```bash
 # command  RTNicPgX64.efi /efuse /svid HexSVID HexSMID
