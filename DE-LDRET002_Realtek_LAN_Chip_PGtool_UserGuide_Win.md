@@ -39,7 +39,7 @@ Now, PGtool is available for operation
 C:\> RTNicPgW64.exe /efuse /r  # use efuse
 C:\> RTNicPgW64.exe /eeprom /r # use eeprom
 
-# If you use more than two identical ICs, you need to add " /# <sequence> "
+# If you use more than two identical ICs, you need to add " /# <Number> "
 C:\> RTNicPgW64.exe /efuse /r /# 1     # read first chip
 C:\> RTNicPgW64.exe /efuse /r /# 2     # read scend chip
 ```
