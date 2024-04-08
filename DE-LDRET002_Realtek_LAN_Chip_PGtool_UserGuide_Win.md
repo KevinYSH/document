@@ -67,21 +67,21 @@ C:\> RTNicPgW64.exe /efuse /r /# 3
 * Modify MAC Address
 ```bash
 # command RTNicPgX64.efi /efuse /nodeid HexNODEID
-C:\> RTNicPgX64.efi /efuse /nodeid 112233445566
+C:\> RTNicPgW64.exe /efuse /nodeid 112233445566
 # Mutibale chip
-C:\> RTNicPgX64.efi /efuse /# 1 /nodeid  ffeeddccbbaa 
-C:\> RTNicPgX64.efi /efuse /# 2 /nodeid  ffeeddccbbab
-C:\> RTNicPgX64.efi /efuse /# 3 /nodeid  ffeeddccbbac 
+C:\> RTNicPgW64.exe /efuse /# 1 /nodeid  ffeeddccbbaa 
+C:\> RTNicPgW64.exe /efuse /# 2 /nodeid  ffeeddccbbab
+C:\> RTNicPgW64.exe /efuse /# 3 /nodeid  ffeeddccbbac 
 ```
 
 * Modify SVID/SMID
 ```bash
 # command  RTNicPgX64.efi /efuse /svid HexSVID HexSMID
-C:\>RTNicPgX64.efi /efuse /svid 10EC 8168
+C:\> RTNicPgW64.exe /efuse /svid 10EC 8168
 # Mutibale chip
-C:\>RTNicPgX64.efi /efuse /# 1 /svid 10EC 8168
-C:\>RTNicPgX64.efi /efuse /# 2 /svid 10EC 8168
-C:\>RTNicPgX64.efi /efuse /# 3 /svid 10EC 8168
+C:\> RTNicPgW64.exe /efuse /# 1 /svid 10EC 8168
+C:\> RTNicPgW64.exe /efuse /# 2 /svid 10EC 8168
+C:\> RTNicPgW64.exe /efuse /# 3 /svid 10EC 8168
 ```
 
 * Modify LED setting
@@ -90,16 +90,16 @@ write register.
 # exmple 
 # LEDCFG = High-Byte(19H) Low-Byte(18H)
 # LEDCFG = 04 28 (exp)
-C:\>RTNicPgX64.efi /efuse /maciob 18 28   # write Register 18H = 0x28 .
-C:\>RTNicPgX64.efi /efuse /maciob 19 04   # write Register 18H = 0x04 .
+C:\> RTNicPgW64.exe /efuse /maciob 18 28   # write Register 18H = 0x28 .
+C:\> RTNicPgW64.exe /efuse /maciob 19 04   # write Register 18H = 0x04 .
 
 # Mutibale chip
-C:\>RTNicPgX64.efi /efuse /#1 /maciob 18 28
-C:\>RTNicPgX64.efi /efuse /#1 /maciob 19 04
-C:\>RTNicPgX64.efi /efuse /#2 /maciob 18 28
-C:\>RTNicPgX64.efi /efuse /#2 /maciob 19 04
-C:\>RTNicPgX64.efi /efuse /#3 /maciob 18 28
-C:\>RTNicPgX64.efi /efuse /#3 /maciob 19 04
+C:\> RTNicPgW64.exe /efuse /#1 /maciob 18 28
+C:\> RTNicPgW64.exe /efuse /#1 /maciob 19 04
+C:\> RTNicPgW64.exe /efuse /#2 /maciob 18 28
+C:\> RTNicPgW64.exe /efuse /#2 /maciob 19 04
+C:\> RTNicPgW64.exe /efuse /#3 /maciob 18 28
+C:\> RTNicPgW64.exe /efuse /#3 /maciob 19 04
 ```
 <font color="#FF0000">*** Please do not program efuse multiple times. If 256 bytes are used up, the IC must be replaced with a new one. ***</font>
 #### 6. Complete PGTool
