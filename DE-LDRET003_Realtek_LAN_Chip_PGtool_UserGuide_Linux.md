@@ -17,7 +17,7 @@ Is can refer to the following link to operate.
 The PG tool has its own driver (pdgrv.ko) and it conflicts with the Ethernet driver (r8168/r8169/r8101/r8125/r8126).
 That is, the Ethernet driver must not be build-in for kernel image. 
 You should remove the Ethernet driver or build it as a module to make it possible to unload the Ethernet driver. 
-Besides, the PG tool should be run as ¡§root¡¨, 
+Besides, the PG tool should be run as `root`, 
 otherwise it would fail.
 
 #### 1. Build and Load the PG tool driver
@@ -39,7 +39,7 @@ insmod pgdrv.ko
 
 ```
 
-#### 1. Set the CFG file corresponding to the Chip
+#### 2. Set the CFG file corresponding to the Chip
 ##### 1G LAN
 RTL8111G(S) -> 8168GEF.CFG ; 
 RTL8111H(S) -> 8168HEF.CFG ; 

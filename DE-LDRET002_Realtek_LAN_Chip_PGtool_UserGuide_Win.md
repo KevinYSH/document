@@ -66,7 +66,7 @@ C:\> RTNicPgW64.exe /efuse /r /# 3
 #### 5. Modify individual parameters
 * Modify MAC Address
 ```bash
-# command RTNicPgX64.efi /efuse /nodeid HexNODEID
+# command RTNicPgW64.exe /efuse /nodeid HexNODEID
 C:\> RTNicPgW64.exe /efuse /nodeid 112233445566
 # Mutibale chip
 C:\> RTNicPgW64.exe /efuse /# 1 /nodeid  ffeeddccbbaa 
