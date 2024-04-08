@@ -21,7 +21,7 @@ Besides, the PG tool should be run as `root`,
 otherwise it would fail.
 
 #### 1. Build and Load the PG tool driver
-unzip Linux PG tool package by command tar ¡Vjxvpf filename.
+unzip Linux PG tool package by command `tar -jxvpf filename`.
 ```shell
 # run at "root" 
 # Step 1: Unload all the Ethernet driver for Realtek.
@@ -64,8 +64,8 @@ RTL8126 -> 8126EF.CFG ;
 #### 4. Programming the chip
 * Single chip
 ```shell
-./rtnicpg /efuse   # Write the data in the CFG file to the chip.
-./rtnicpg /efuse /r   # Read and check whether it is correct
+./rtnicpg /efuse        # Write the data in the CFG file to the chip.
+./rtnicpg /efuse /r     # Read and check whether it is correct
 ```
 * Mutibale chip
 ```shell
