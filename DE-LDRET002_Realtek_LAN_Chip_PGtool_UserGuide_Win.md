@@ -27,7 +27,7 @@ RTL8125BG(S) -> 8125BGEF.CFG ;
 RTL8126 -> 8126EF.CFG ; 
 #### 2. Use command line to stop the Realtek driver from working.
 Use Administrator to open Windows command line applications.
-```bash
+```shell
 C:\> SET HWID= "PCI\VEN_10EC&DEV_8131" "PCI\VEN_10EC&DEV_8136" "PCI\VEN_10EC&DEV_8137" "PCI\VEN_10EC&DEV_8168" "PCI\VEN_10EC&DEV_8161" "PCI\VEN_10EC&DEV_8169" "PCI\VEN_10EC&DEV_8167" "PCI\VEN_10EC&DEV_8125" "PCI\VEN_10EC&DEV_2502" "PCI\VEN_10EC&DEV_2600" "PCI\VEN_10EC&DEV_3000" "PCI\VEN_10EC&DEV_8162"
 
 C:\> net stop DashClientService
@@ -35,7 +35,7 @@ C:\> devcon64.exe disable %HWID%
 ```
 Now, PGtool is available for operation
 #### 3. Check if the PGtool can read the chip
-```bash
+```shell
 C:\> RTNicPgW64.exe /efuse /r  # use efuse
 C:\> RTNicPgW64.exe /eeprom /r # use eeprom
 
@@ -45,12 +45,12 @@ C:\> RTNicPgW64.exe /efuse /r /# 2     # read scend chip
 ```
 #### 4. Programming the chip
 * Single chip
-```bash
+```shell
 C:\> RTNicPgW64.exe /efuse   # Write the data in the CFG file to the chip.
 C:\> RTNicPgW64.exe /efuse /r   # Read and check whether it is correct
 ```
 * Mutibale chip
-```bash
+```shell
 # Write the data in the CFG file to the chip, and SN will automatically increase by 1.
 C:\> RTNicPgW64.exe /efuse /efwsn /cfgsnchg /# 1 
 C:\> RTNicPgW64.exe /efuse /efwsn /cfgsnchg /# 2
@@ -65,7 +65,7 @@ C:\> RTNicPgW64.exe /efuse /r /# 3
 
 #### 5. Modify individual parameters
 * Modify MAC Address
-```bash
+```shell
 # command RTNicPgW64.exe /efuse /nodeid HexNODEID
 C:\> RTNicPgW64.exe /efuse /nodeid 112233445566
 # Mutibale chip
@@ -75,7 +75,7 @@ C:\> RTNicPgW64.exe /efuse /# 3 /nodeid  ffeeddccbbac
 ```
 
 * Modify SVID/SMID
-```bash
+```shell
 # command  RTNicPgX64.efi /efuse /svid HexSVID HexSMID
 C:\> RTNicPgW64.exe /efuse /svid 10EC 8168
 # Mutibale chip
@@ -86,7 +86,7 @@ C:\> RTNicPgW64.exe /efuse /# 3 /svid 10EC 8168
 
 * Modify LED setting
 write register.
-```bash
+```shell
 # exmple 
 # LEDCFG = High-Byte(19H) Low-Byte(18H)
 # LEDCFG = 04 28 (exp)
@@ -105,7 +105,7 @@ C:\> RTNicPgW64.exe /efuse /#3 /maciob 19 04
 #### 6. Complete PGTool
 After completing PGTool, you need to restart the Realtek driver.
 type
-```bash
+```shell
 C:\> devcon64.exe enable %HWID%
 C:\> net start DashClientService
 ```
