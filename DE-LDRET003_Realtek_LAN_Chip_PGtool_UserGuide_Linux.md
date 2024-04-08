@@ -86,11 +86,11 @@ RTL8126 -> 8126EF.CFG ;
 * Modify MAC Address
 ```shell
 # command RTNicPgX64.efi /efuse /nodeid HexNODEID
-./rtnicpg/efuse /nodeid 112233445566
+./rtnicpg /efuse /nodeid 112233445566
 # Mutibale chip
-./rtnicpg/efuse /# 1 /nodeid  ffeeddccbbaa 
-./rtnicpg/efuse /# 2 /nodeid  ffeeddccbbab
-./rtnicpg/efuse /# 3 /nodeid  ffeeddccbbac 
+./rtnicpg /efuse /# 1 /nodeid  ffeeddccbbaa 
+./rtnicpg /efuse /# 2 /nodeid  ffeeddccbbab
+./rtnicpg /efuse /# 3 /nodeid  ffeeddccbbac 
 ```
 
 * Modify SVID/SMID
