@@ -134,5 +134,5 @@ reboot
 
 ## Note: 
 Some UEFI versions do not support the `/#` command.
-If multiple CHIPs need to be burned,
+If multiple CHIPs need to be Programming,
 you need to change `/#` to `/^#` to use it normally.
