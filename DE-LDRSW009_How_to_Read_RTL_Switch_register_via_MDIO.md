@@ -35,7 +35,17 @@ write_Reg 0x18 = Reg_Data
 write_Reg 0x15 = 0x0003
 ```
 
-**2. MDIO get chip_id**
+**2. MDIO reset chip**
+use uboot mii command (in AST2600/ i.mx serial )
+example:
+```shell
+mii write 0 0x1f 0x000e
+mii write 0 0x17 0x1322  //reg23
+mii write 0 0x18 0x0001  //reg24
+mii write 0 0x15 0x0003
+```
+
+**3. MDIO get chip_id**
 use uboot mii command (in AST2600/ i.mx serial )
 example:
 ```shell
