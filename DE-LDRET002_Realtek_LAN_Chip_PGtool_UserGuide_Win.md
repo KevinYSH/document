@@ -52,9 +52,9 @@ C:\> RTNicPgW64.exe /efuse /r   # Read and check whether it is correct
 * Mutibale chip
 ```shell
 # Write the data in the CFG file to the chip, and SN will automatically increase by 1.
-C:\> RTNicPgW64.exe /efuse /efwsn /cfgsnchg /# 1 
-C:\> RTNicPgW64.exe /efuse /efwsn /cfgsnchg /# 2
-C:\> RTNicPgW64.exe /efuse /efwsn /cfgsnchg /# 3
+C:\> RTNicPgW64.exe /efuse /cfgsnchg /# 1 
+C:\> RTNicPgW64.exe /efuse /cfgsnchg /# 2
+C:\> RTNicPgW64.exe /efuse /cfgsnchg /# 3
 
 # Read and check whether it is correct
 C:\> RTNicPgW64.exe /efuse /r /# 1
