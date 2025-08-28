@@ -84,41 +84,6 @@ C:\> RTNicPgW64.exe /efuse /# 2 /svid 10EC 8168
 C:\> RTNicPgW64.exe /efuse /# 3 /svid 10EC 8168
 ```
 
-* Modify LED setting
-write register.
-```shell
-### for the 1G Lan LED config
-# exmple 
-# LEDCFG = High-Byte(19H) Low-Byte(18H)
-# LEDCFG = 04 28 (exp)
-C:\> RTNicPgW64.exe /efuse /maciob 18 28   # write Register 18H = 0x28 .
-C:\> RTNicPgW64.exe /efuse /maciob 19 04   # write Register 19H = 0x04 .
-
-# Mutibale chip
-C:\> RTNicPgW64.exe /efuse /#1 /maciob 18 28
-C:\> RTNicPgW64.exe /efuse /#1 /maciob 19 04
-C:\> RTNicPgW64.exe /efuse /#2 /maciob 18 28
-C:\> RTNicPgW64.exe /efuse /#2 /maciob 19 04
-C:\> RTNicPgW64.exe /efuse /#3 /maciob 18 28
-C:\> RTNicPgW64.exe /efuse /#3 /maciob 19 04
-
-### for the 2.5G Lan LED config
-# exmple 
-# LEDxCFG = High-Byte Low-Byte
-# LED0CFG = 02 01  (18H)
-# LED1CFG = 02 02  (86H)
-# LED2CFG = 02 08  (84H)
-# LED3CFG = 02 20  (96H)
-C:\> RTNicPgW64.exe /efuse /maciob 18 01   # write Register 18H = 0x01 .
-C:\> RTNicPgW64.exe /efuse /maciob 19 02   # write Register 19H = 0x02 .
-C:\> RTNicPgW64.exe /efuse /maciob 86 02   # write Register 86H = 0x02 .
-C:\> RTNicPgW64.exe /efuse /maciob 87 02   # write Register 87H = 0x02 .
-C:\> RTNicPgW64.exe /efuse /maciob 84 08   # write Register 84H = 0x08 .
-C:\> RTNicPgW64.exe /efuse /maciob 85 02   # write Register 85H = 0x02 .
-C:\> RTNicPgW64.exe /efuse /maciob 96 20   # write Register 96H = 0x20 .
-C:\> RTNicPgW64.exe /efuse /maciob 97 02   # write Register 97H = 0x02 .
-
-
 ```
 <font color="#FF0000">*** Please do not program efuse multiple times. If 256 bytes are used up, the IC must be replaced with a new one. ***</font>
 #### 6. Complete PGTool
