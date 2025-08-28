@@ -84,7 +84,6 @@ C:\> RTNicPgW64.exe /efuse /# 2 /svid 10EC 8168
 C:\> RTNicPgW64.exe /efuse /# 3 /svid 10EC 8168
 ```
 
-```
 <font color="#FF0000">*** Please do not program efuse multiple times. If 256 bytes are used up, the IC must be replaced with a new one. ***</font>
 #### 6. Complete PGTool
 After completing PGTool, you need to restart the Realtek driver.
