@@ -103,25 +103,8 @@ RTL8126 -> 8126EF.CFG ;
 ./rtnicpg /efuse /# 3 /svid 10EC 8168
 ```
 
-* Modify LED setting
-write register.
-```shell
-### for the 1G Lan LED config
-# exmple 
-# LEDCFG = High-Byte(19H) Low-Byte(18H)
-# LEDCFG = 04 28 (exp)
-./rtnicpg /efuse /maciob 18 28   # write Register 18H = 0x28 .
-./rtnicpg /efuse /maciob 19 04   # write Register 19H = 0x04 .
-
-# Mutibale chip
-./rtnicpg /efuse /#1 /maciob 18 28
-./rtnicpg /efuse /#1 /maciob 19 04
-./rtnicpg /efuse /#2 /maciob 18 28
-./rtnicpg /efuse /#2 /maciob 19 04
-./rtnicpg /efuse /#3 /maciob 18 28
-./rtnicpg /efuse /#3 /maciob 19 04
-
 <font color="#FF0000">*** Please do not program efuse multiple times. If 256 bytes are used up, the IC must be replaced with a new one. ***</font>
+
 #### 6. Complete PGTool
 ```shell
 # Unload the driver of pgtool when programming is done.
